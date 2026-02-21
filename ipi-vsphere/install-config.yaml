@@ -1,0 +1,61 @@
+## referenced from https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installing_on_vmware_vsphere/installation-config-parameters-vsphere
+apiVersion: v1
+baseDomain: corp.aclab.uk
+metadata:
+  name: home-ocp01
+platform: 
+  vsphere:
+    apiVIPs:
+    - 10.166.109.1    # kubeapi vip backed by keepalived
+    ingressVIPs:
+    - 10.166.109.2    # haproxy vip backed by keepalived
+    diskType: thin
+    vcenters:
+    - name: vcenter.corp.aclab.uk
+      server: 'vcenter.corp.aclab.uk'
+      username: 'administrator@vsphere.local'
+      password: 'changeme'
+networking:
+  networkType: OVNKubernetes
+  clusterNetwork:
+  - cidr: 10.128.0.0/14       # non-routable for for cluster, default cidr pasted for information only
+    hostPrefix: 23            # default prefix allocation per node, pasted for information only
+  serviceNetwork:
+  - 172.30.0.0/16             # non-routable for services, default cidr pasted for information only
+  machineNetwork:
+  - cidr: 10.166.109.0/24        # host network where the nodes will reside, this matches the vmware dp-port group you assign the virtual machines to
+  ovnKubernetesConfig:
+    ipv4:
+      internalJoinSubnet: 100.64.0.0/16   # default internal join subnet pasted for information only
+pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfYjIwMWQ5Mzk3NWVkNDU1Y2E2NTE4ZmI4M2EwMDVjNzM6R1pXVEpTNjMwSTI4Q1NQOTdBWjBBNEdWVFlMRVdEOTAySzc1NEpKWllSSlVaWFRPS0M4OTNBUERPODZUNkxZMg==","email":"agill@simplifyit.co.uk"},"quay.io":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfYjIwMWQ5Mzk3NWVkNDU1Y2E2NTE4ZmI4M2EwMDVjNzM6R1pXVEpTNjMwSTI4Q1NQOTdBWjBBNEdWVFlMRVdEOTAySzc1NEpKWllSSlVaWFRPS0M4OTNBUERPODZUNkxZMg==","email":"agill@simplifyit.co.uk"},"registry.connect.redhat.com":{"auth":"fHVoYy1wb29sLWZmYTI3NzVkLWJkNGItNDU1My1hNDMyLWJkM2MyNDA4NmM2NTpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmlabUl5WldZeFkyUmhNREEwTXpNNVltVm1PVFF6TkRJNVlXTmlNRFV5WWlKOS5aUlE0NXJ6d1ZlTEgxd2d1RjNjQ1pxMS1EMEFGR1FLSG1nRFBaMkowbE5wMG5UNVYyaUQ3QmZhZkRFNi1oWnVyME9NMWpFMzRIeHJUMUIzUkJEcTJSS0o2M1VSWFVUbUZlYW02Sk5WNkk3dEZzcFFmWkY4dGppbVptSXB5ODFwT0FzVTRWV2g2MjJ2UGJyMlY1SnJvZmJxSVF2T0x5dllhb0ZYM0RJOUlvdWxheXcxRjY5eWNtU013cHUxOXJSeVdJRnpvTEh4ZXpTeTdnOWpUU3FoUXdQcHVRWjF5aFBjXzF1MDBPR2lDSHpTRjNlLWlkdVRZTHlGaXVhOUNtYVgtOFZyNHoyYUkwbnZtY1R3TVViYXFkdHJUZXJ2MUNuN2pUUmJ2bF8xNnpUa2pqcjkybGxHNFNGd3RIRkc0cVlYaTBjeGF2TGRBdWUydS1vTjBRQnlFZzZMRWlrb1dHSERCQUYxbDl1aFZvMkFxNjhGb05IdHdWV1E2ZXUwWGdtalk3aFo1UEdVOEtKTDhuYVBoSEMwOVlVLUlyX21KdERfaDFWNjhiN3k1bmR6d2YxYXcyR2pGcnlQb3FkUkZvTTdsYmFTaEdlY2gtTE5UVHFvcE9uS1NtZC1BLWFsWWw3UVRnVmg1dUNZTmlJT1dzNUFueVoxQVdXUHRFTUVESENBYkR2UWJPVUpibEdSNlVSWkRmZmZJa09RYmpKZjMzanpGTHd1Tm5sZXAtUVFGTFllM3VneDAyaFlqQ0ZOYm1YVFBYNFhpazl3LURKaG1QRnN6SHNfdXAtcmJZWFYwdVBrS1FEbkZRcHhWdVZISkNnR0lCbUFwSFQzeERSRHBXTHJqdjRHLW5pNmJjbzN0cWhwRm1JVU9VbDhXOTRHOW50ZzV6OG1fMlNZZmxhcw==","email":"agill@simplifyit.co.uk"},"registry.redhat.io":{"auth":"fHVoYy1wb29sLWZmYTI3NzVkLWJkNGItNDU1My1hNDMyLWJkM2MyNDA4NmM2NTpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSmlabUl5WldZeFkyUmhNREEwTXpNNVltVm1PVFF6TkRJNVlXTmlNRFV5WWlKOS5aUlE0NXJ6d1ZlTEgxd2d1RjNjQ1pxMS1EMEFGR1FLSG1nRFBaMkowbE5wMG5UNVYyaUQ3QmZhZkRFNi1oWnVyME9NMWpFMzRIeHJUMUIzUkJEcTJSS0o2M1VSWFVUbUZlYW02Sk5WNkk3dEZzcFFmWkY4dGppbVptSXB5ODFwT0FzVTRWV2g2MjJ2UGJyMlY1SnJvZmJxSVF2T0x5dllhb0ZYM0RJOUlvdWxheXcxRjY5eWNtU013cHUxOXJSeVdJRnpvTEh4ZXpTeTdnOWpUU3FoUXdQcHVRWjF5aFBjXzF1MDBPR2lDSHpTRjNlLWlkdVRZTHlGaXVhOUNtYVgtOFZyNHoyYUkwbnZtY1R3TVViYXFkdHJUZXJ2MUNuN2pUUmJ2bF8xNnpUa2pqcjkybGxHNFNGd3RIRkc0cVlYaTBjeGF2TGRBdWUydS1vTjBRQnlFZzZMRWlrb1dHSERCQUYxbDl1aFZvMkFxNjhGb05IdHdWV1E2ZXUwWGdtalk3aFo1UEdVOEtKTDhuYVBoSEMwOVlVLUlyX21KdERfaDFWNjhiN3k1bmR6d2YxYXcyR2pGcnlQb3FkUkZvTTdsYmFTaEdlY2gtTE5UVHFvcE9uS1NtZC1BLWFsWWw3UVRnVmg1dUNZTmlJT1dzNUFueVoxQVdXUHRFTUVESENBYkR2UWJPVUpibEdSNlVSWkRmZmZJa09RYmpKZjMzanpGTHd1Tm5sZXAtUVFGTFllM3VneDAyaFlqQ0ZOYm1YVFBYNFhpazl3LURKaG1QRnN6SHNfdXAtcmJZWFYwdVBrS1FEbkZRcHhWdVZISkNnR0lCbUFwSFQzeERSRHBXTHJqdjRHLW5pNmJjbzN0cWhwRm1JVU9VbDhXOTRHOW50ZzV6OG1fMlNZZmxhcw==","email":"agill@simplifyit.co.uk"}}}'
+sshKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbrOX9HZdwLNHl1vgSvSdfGTXDP2ygof7UXYqsV6cSm home-ocp01'
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  MIIE8jCCA1qgAwIBAgIJAPNfQmsd3FOrMA0GCSqGSIb3DQEBCwUAMIGUMQswCQYD
+  VQQDDAJDQTEXMBUGCgmSJomT8ixkARkWB3ZzcGhlcmUxFTATBgoJkiaJk/IsZAEZ
+  FgVsb2NhbDELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNV
+  BAoMDXZjMDEuYWNsYWIudWsxGzAZBgNVBAsMElZNd2FyZSBFbmdpbmVlcmluZzAe
+  Fw0yNjAyMDgwNzUyNDNaFw0zNjAyMDYwNzUyNDNaMIGUMQswCQYDVQQDDAJDQTEX
+  MBUGCgmSJomT8ixkARkWB3ZzcGhlcmUxFTATBgoJkiaJk/IsZAEZFgVsb2NhbDEL
+  MAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAoMDXZjMDEu
+  YWNsYWIudWsxGzAZBgNVBAsMElZNd2FyZSBFbmdpbmVlcmluZzCCAaIwDQYJKoZI
+  hvcNAQEBBQADggGPADCCAYoCggGBALr6kU+VfSwwFezTWQVtThAiHN37qlkfbPD2
+  lynbpeQyAAVPYHa5is30ymNlNAX5eN53Q4jHNGosEfqa0g+pXYZ4OoUy1bztkXPe
+  nE9kPOxEDkTOkyOIsJ0U1xf319KS9wbLY18doGydnCBimyIyKXqgf/Cy9TIG3ttL
+  m/zmaczx4TYpok7xI/iniLbxda4/DC/TqM4chTqLQmoRATwQVyF6WEAXDsHZy4Wq
+  t/IQ2fZ5JIaBkK7AgpcF2giSPvggjrVoTONd3MYgEJpKmN9jtlqnFIVu4Utx+CLb
+  Zrc90ZYX8kQki3ji+OUVGuSM+GloRV8aEWAaV+iFAI3pz9EVWzQ1Tg0OilPbEJOo
+  v/+Fo0cqAEiXc8F6G14ogxk8xDcVoecFOBkjysBfnILm251PO5h1r0lJWTWZIQUQ
+  mx4+7f9KWbjY1xQ0Ba8pUJ5j2jAH+qyLpFbItIjvkOo6O7bXhi4M5HRYTLewiG2D
+  jVf3LSOwdjuknr2rjpYAIG10Z6lWpQIDAQABo0UwQzAdBgNVHQ4EFgQUc2r2MIrX
+  rLD9kzXSX2zZPXGiKrwwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8C
+  AQAwDQYJKoZIhvcNAQELBQADggGBAJTHN3Ku4C4SKTjc6PPXibDzelYoAQj9lFjM
+  Tb1R3uHvZznId6pJc/G8aNg+itczq5DTuEuvwhaIqXoC/f4FFMbj6iWuzJVlwa5E
+  xL1kBN92R3fio1LkUsW1+UcTpu6JdKRD4t/9UbtH04rLRsaWY2wNoYDQwmYHuLYP
+  +8n9olfzKElOhnNp9zyZ7fVfVzij9O5YrnzwGvqlS5YK76nHXbTTUsC+IKPEBMZU
+  +8KDWiZBRZ1BcaKlyKKYiCiwrrDcxOLog1/I/RNCTNXAyXJOP8bZ9IlewC17w8ST
+  2a0uL4KpkcClj7s1DjNIFGRHrq7kml6OBV3iwVIPnOQwW9GyWfSPQMqrhVz6Nezg
+  x8iVxtbT8aLQONSe7Xjfck7B8yvCskD9HZ66yGW1g1hqvAV/3i3ybhtaf6KIaXP0
+  vLr545r0OkjtzYotlH7OFY3LMCt+lQBgN2Lj0U6waLTiDCV7iEetN2V9It9X+Pzp
+  heCvmGZVwNw864mogT+Gbh8wHGcEBg==
+  -----END CERTIFICATE-----
