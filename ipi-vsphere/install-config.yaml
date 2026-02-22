@@ -1,9 +1,9 @@
 ## referenced from https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installing_on_vmware_vsphere/installation-config-parameters-vsphere
 apiVersion: v1
-baseDomain: corp.aclab.uk
+baseDomain: aclab.uk
 metadata:
   name: home-ocp01
-platform: 
+platform:
   vsphere:
     apiVIPs:
     - 10.166.109.1    # kubeapi vip backed by keepalived
@@ -11,10 +11,23 @@ platform:
     - 10.166.109.2    # haproxy vip backed by keepalived
     diskType: thin
     vcenters:
-    - name: vcenter.corp.aclab.uk
-      server: 'vcenter.corp.aclab.uk'
-      username: 'administrator@vsphere.local'
-      password: 'changeme'
+      - server: vc01.aclab.uk
+        user: administrator@vsphere.local
+        password: somethingsecure
+        datacenters: 
+         - home-m01-dc01
+    failureDomains:   
+      - name: home-fd-01
+        zone: home-zone-01
+        region: home
+        server: vc01.aclab.uk
+        topology:
+          datacenter: home-m01-dc01
+          datastore: /home-m01-dc01/datastore/home-m01-cl01-ds-vsan01
+          computeCluster: /home-m01-dc01/host/home-m01-cl01
+          folder: /home-m01-dc01/vm/Infra/OpenShift
+          networks:
+            - dp-ocp-mgmt-v109
 networking:
   networkType: OVNKubernetes
   clusterNetwork:
