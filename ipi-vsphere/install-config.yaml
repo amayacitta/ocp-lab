@@ -40,7 +40,7 @@ networking:
   ovnKubernetesConfig:
     ipv4:
       internalJoinSubnet: 100.64.0.0/16   # default internal join subnet pasted for information only
-pullSecret: 'changeme
+pullSecret: 'changeme'
 sshKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbrOX9HZdwLNHl1vgSvSdfGTXDP2ygof7UXYqsV6cSm home-ocp01'
 additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
