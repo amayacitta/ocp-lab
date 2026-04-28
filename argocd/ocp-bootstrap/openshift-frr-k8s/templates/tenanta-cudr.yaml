@@ -1,0 +1,23 @@
+## not namespaced
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name:  tenanta
+  labels:
+    infra.aclab.uk/advertise: "true"
+spec:
+  namespaceSelector:
+    matchExpressions:
+    - key: kubernetes.io/metadata.name
+      operator: In
+      values:
+        - tenanta-app01
+        - tenanta-app02
+  network:
+    layer2:
+      ipam:
+        lifecycle: Persistent
+      role: Primary
+      subnets:
+      - 10.166.250.0/24
+    topology: Layer2

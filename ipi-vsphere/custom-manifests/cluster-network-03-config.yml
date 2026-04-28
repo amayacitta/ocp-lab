@@ -1,0 +1,28 @@
+apiVersion: operator.openshift.io/v1
+kind: Network
+metadata:
+  name: cluster
+spec:
+  # enable bgp routing via frr deamonset
+  additionalRoutingCapabilities:
+    providers:
+    - FRR
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  defaultNetwork:
+    ovnKubernetesConfig:
+      # frr bgp advertisements
+      routeAdvertisements: Enabled
+      egressIPConfig: {}
+      ipv4:
+        internalJoinSubnet: 100.64.0.0/16
+    type: OVNKubernetes
+  disableNetworkDiagnostics: false
+  managementState: Managed
+  observedConfig: null
+  serviceNetwork:
+  - 172.30.0.0/16
+  unsupportedConfigOverrides: null
+status:
+  readyReplicas: 0

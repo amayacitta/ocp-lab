@@ -1,0 +1,23 @@
+## not namespaced
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name:  tenantb
+  labels:
+    infra.aclab.uk/advertise: "true"
+spec:
+  namespaceSelector:
+    matchExpressions:
+    - key: kubernetes.io/metadata.name
+      operator: In
+      values:
+        - tenantb-app01
+        - tenantb-app02
+  network:
+    layer2:
+      ipam:
+        lifecycle: Persistent
+      role: Primary
+      subnets:
+      - 10.166.251.0/24
+    topology: Layer2

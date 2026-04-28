@@ -1,0 +1,17 @@
+## not namespaced
+apiVersion: k8s.ovn.org/v1
+kind: RouteAdvertisements
+metadata:
+  name: cudr-route-advertisement-workers
+spec:
+  nodeSelector: 
+    node-role.kubernetes.io/worker: ""
+  frrConfigurationSelector: {}
+  networkSelectors:
+    - networkSelectionType: ClusterUserDefinedNetworks
+      clusterUserDefinedNetworkSelector:
+        networkSelector:
+          matchLabels:
+            infra.aclab.uk/advertise: "true"
+  advertisements:
+  - "PodNetwork"
