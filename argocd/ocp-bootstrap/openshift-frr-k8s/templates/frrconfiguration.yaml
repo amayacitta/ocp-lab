@@ -8,7 +8,7 @@ metadata:
     infra.aclab.uk/region: {{ .Values.frr.config.region }}
 spec:
   nodeSelector:
-    labelSelector:
+    matchLabels:
       node-role.kubernetes.io/worker: ""
   bgp:
     bfdProfiles:

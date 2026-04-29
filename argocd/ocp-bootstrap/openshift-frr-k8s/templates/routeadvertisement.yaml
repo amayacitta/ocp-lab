@@ -6,7 +6,7 @@ metadata:
   name: cudn-route-advertisement-workers
 spec:
   nodeSelector: 
-    labelSelector:
+    matchLabels:
       node-role.kubernetes.io/worker: ""
   frrConfigurationSelector: {}
   networkSelectors:
