@@ -1,5 +1,5 @@
 {{- if .Values.nmstate.enabled }}
-piVersion: operators.coreos.com/v1
+apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
   name: openshift-nmstate
