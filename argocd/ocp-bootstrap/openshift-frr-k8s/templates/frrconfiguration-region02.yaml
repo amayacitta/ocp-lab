@@ -1,60 +1,60 @@
-apiVersion: frrk8s.metallb.io/v1beta1
-kind: FRRConfiguration
-metadata:
-  name: send-receive-all-workers
-  namespace: openshift-frr-k8s
-  label:
-    infra.aclab.uk/region: region02
-spec:
-  nodeSelector:
-    node-role.kubernetes.io/worker: ""
-  bgp:
-    bfdProfiles:
-    - detectMultiplier: 4
-      name: bfd-default
-      receiveInterval: 200
-      transmitInterval: 200
-    routers:
-    - asn: 65502
-      neighbors:
-      - address: 10.166.110.254
-        asn: 64512
-        disableMP: true
-        bfdProfile: bfd-default
-        toReceive:
-          allowed:
-            mode: all
-            # mode: filtered
-            # prefixes:
-            # - prefix: 10.0.0.0/8
-            #   ge: 8
-        toAdvertise:
-          allowed:
-            mode: all
-            # prefixes:
-            # - 10.200.0.0/16
-      - address: 10.166.111.254
-        asn: 64512
-        disableMP: true
-        bfdProfile: bfd-default
-        toReceive:
-          allowed:
-            mode: all
-            # mode: filtered
-            # prefixes:
-            # - prefix: 10.0.0.0/8
-            #   ge: 8
-        toAdvertise:
-          allowed:
-            mode: all
-            # prefixes:
-            # - 10.200.0.0/16
-    ## route leak default vrf bgp routes into tenants
-    - asn: 65502
-      imports:
-      - vrf: default
-      vrf: tenanta
-    - asn: 65502
-      imports:
-      - vrf: default
-      vrf: tenantb
+# apiVersion: frrk8s.metallb.io/v1beta1
+# kind: FRRConfiguration
+# metadata:
+#   name: send-receive-all-workers
+#   namespace: openshift-frr-k8s
+#   label:
+#     infra.aclab.uk/region: region02
+# spec:
+#   nodeSelector:
+#     node-role.kubernetes.io/worker: ""
+#   bgp:
+#     bfdProfiles:
+#     - detectMultiplier: 4
+#       name: bfd-default
+#       receiveInterval: 200
+#       transmitInterval: 200
+#     routers:
+#     - asn: 65502
+#       neighbors:
+#       - address: 10.166.110.254
+#         asn: 64512
+#         disableMP: true
+#         bfdProfile: bfd-default
+#         toReceive:
+#           allowed:
+#             mode: all
+#             # mode: filtered
+#             # prefixes:
+#             # - prefix: 10.0.0.0/8
+#             #   ge: 8
+#         toAdvertise:
+#           allowed:
+#             mode: all
+#             # prefixes:
+#             # - 10.200.0.0/16
+#       - address: 10.166.111.254
+#         asn: 64512
+#         disableMP: true
+#         bfdProfile: bfd-default
+#         toReceive:
+#           allowed:
+#             mode: all
+#             # mode: filtered
+#             # prefixes:
+#             # - prefix: 10.0.0.0/8
+#             #   ge: 8
+#         toAdvertise:
+#           allowed:
+#             mode: all
+#             # prefixes:
+#             # - 10.200.0.0/16
+#     ## route leak default vrf bgp routes into tenants
+#     - asn: 65502
+#       imports:
+#       - vrf: default
+#       vrf: tenanta
+#     - asn: 65502
+#       imports:
+#       - vrf: default
+#       vrf: tenantb
