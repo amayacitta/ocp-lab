@@ -1,5 +1,5 @@
 {{- if .Values.nmstate.enabled }}
-piVersion: v1
+apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ .Values.nmstate.namespace }}
