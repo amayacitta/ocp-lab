@@ -14,7 +14,7 @@ compute:
       cpus: 4
       coresPerSocket: 2
       memoryMB: 8192
-  replicas: 1
+  replicas: 2
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
