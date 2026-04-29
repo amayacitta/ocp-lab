@@ -2,7 +2,7 @@
 apiVersion: k8s.ovn.org/v1
 kind: RouteAdvertisements
 metadata:
-  name: cudr-route-advertisement-workers
+  name: cudn-route-advertisement-workers
 spec:
   nodeSelector: 
     node-role.kubernetes.io/worker: ""
