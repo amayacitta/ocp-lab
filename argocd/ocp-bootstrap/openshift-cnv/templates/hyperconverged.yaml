@@ -1,9 +1,9 @@
-{{- if Values.kubevirt.enabled }}
+{{- if .Values.kubevirt.enabled }}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
-  namespace: openshift-cnv
+  namespace: {{ .Values.kubevirt.namespace }}
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
