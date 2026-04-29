@@ -1,5 +1,5 @@
 frr:
-  enabled: false
+  enabled: true
   config:
     region: region01
     name: send-receive-all-workers
