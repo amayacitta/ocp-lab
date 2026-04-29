@@ -13,8 +13,8 @@ compute:
         diskSizeGB: 250
       cpus: 4
       coresPerSocket: 2
-      memoryMB: 8192
-  replicas: 3
+      memoryMB: 16384
+  replicas: 2
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
