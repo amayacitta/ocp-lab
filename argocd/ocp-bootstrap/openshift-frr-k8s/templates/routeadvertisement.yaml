@@ -1,3 +1,4 @@
+{{- if .Values.frr.enabled }}
 ## not namespaced
 apiVersion: k8s.ovn.org/v1
 kind: RouteAdvertisements
@@ -15,3 +16,4 @@ spec:
             infra.aclab.uk/advertise: "true"
   advertisements:
   - "PodNetwork"
+{{ end -}}
