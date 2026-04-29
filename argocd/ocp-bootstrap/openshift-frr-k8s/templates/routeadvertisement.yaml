@@ -4,10 +4,8 @@ apiVersion: k8s.ovn.org/v1
 kind: RouteAdvertisements
 metadata:
   name: cudn-route-advertisement-workers
-spec:
-  nodeSelector: 
-    matchLabels:
-      node-role.kubernetes.io/worker: ""
+spec:{
+  nodeSelector: {}    # must be all nodes when advertising PodNetwork
   frrConfigurationSelector: {}
   networkSelectors:
     - networkSelectionType: ClusterUserDefinedNetworks
