@@ -1,7 +1,6 @@
 frr:
   enabled: true
   config:
-    region: region01
     name: send-receive-all-workers
     namespace: openshift-frr-k8s
     asn: 65501
