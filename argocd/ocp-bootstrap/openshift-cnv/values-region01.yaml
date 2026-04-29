@@ -1,7 +1,7 @@
 kubevirt:
   enabled: false
   namespace: openshift-cnv
-  installPlanApproval: Automatic
+  installPlanApproval: Automatic     # Automatic | Manual
   channel: stable
   config:
     env:
