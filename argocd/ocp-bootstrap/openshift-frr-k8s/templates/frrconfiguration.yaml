@@ -3,7 +3,7 @@ apiVersion: frrk8s.metallb.io/v1beta1
 kind: FRRConfiguration
 metadata:
   name: {{ .Values.frr.config.name }}
-  namespace: {{ .Values.frr.config.name }}
+  namespace: {{ .Values.frr.config.namespace }}
   label:
     infra.aclab.uk/region: {{ .Values.frr.config.region }}
 spec:
