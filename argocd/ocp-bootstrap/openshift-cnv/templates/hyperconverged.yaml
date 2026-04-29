@@ -1,3 +1,4 @@
+{{- if Values.kubevirt.enabled }}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
@@ -6,3 +7,4 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
+{{ end -}}

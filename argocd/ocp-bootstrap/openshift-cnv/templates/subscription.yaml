@@ -1,14 +1,4 @@
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: kubevirt-hyperconverged-group
-  namespace: openshift-cnv
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-spec:
-  targetNamespaces:
-    - openshift-cnv
----
+{{- if Values.kubevirt.enabled }}
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -21,10 +11,11 @@ spec:
   sourceNamespace: openshift-marketplace
   name: kubevirt-hyperconverged
   #startingCSV: kubevirt-hyperconverged-operator.v4.20.11
-  channel: stable
-  installPlanApproval: Automatic
+  channel: {{ Values.kubevirt.channel }}
+  installPlanApproval: {{ Values.kubevirt.installPlanApproval }}
   # enable nested virtualisation
-  config:
-    env:
-    - name: KVM_EMULATION
-      value: "true"
+{{- with .Values.kubevirt.config }} 
+    config:
+{{ toYaml . | indent 4 -}}
+{{ end }}   
+{{ end -}}

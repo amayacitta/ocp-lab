@@ -1,0 +1,8 @@
+kubevirt:
+  enabled: true
+  installPlanApproval: Automatic
+  channel: stable
+  config:
+    env:
+    - name: KVM_EMULATION
+      value: "true"
