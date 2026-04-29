@@ -1,3 +1,4 @@
 gitops:
   enabled: true
   namespace: openshift-gitops
+  ClusterRole: cluster-admin

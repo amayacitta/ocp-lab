@@ -1,0 +1,18 @@
+{{- if .Values.tenants.enabled }}
+{{- range $tenantName, $tenant := .Values.tenants }}
+{{- if ne $tenantName "enabled" }}
+{{- range $ns := $tenant.namespaces }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $ns }}
+  labels:
+    k8s.ovn.org/primary-user-defined-network: ""
+    k8s.ovn.org/primary-network: "{{ $tenant.cudn }}"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+---
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

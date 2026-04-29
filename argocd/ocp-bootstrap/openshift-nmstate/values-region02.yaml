@@ -1,0 +1,5 @@
+nmstate:
+  enabled: true
+  namespace: openshift-nmstate
+  installPlanApproval: Automatic
+  channel: stable

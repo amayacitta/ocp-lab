@@ -1,0 +1,20 @@
+frr:
+  enabled: false
+  config:
+    region: region01
+    name: send-receive-all-workers
+    namespace: openshift-frr-k8s
+    asn: 65501
+    peerasn: 64512
+    neighbor: 
+      uplinka: 10.166.110.254
+      uplinkb: 10.166.111.254
+    routeleak:
+    - asn: 65501
+      imports:
+      - vrf: default
+      vrf: tenanta
+    - asn: 65501
+      imports:
+      - vrf: default
+      vrf: tenantb

@@ -1,10 +1,11 @@
+{{- if .Values.frr.enabled }}
 apiVersion: frrk8s.metallb.io/v1beta1
 kind: FRRConfiguration
 metadata:
-  name: send-receive-all-workers
-  namespace: openshift-frr-k8s
+  name: {{ .Values.frr.config.name }}
+  namespace: {{ .Values.frr.config.name }}
   label:
-    infra.aclab.uk/region: region01
+    infra.aclab.uk/region: {{ .Values.frr.config.region }}
 spec:
   nodeSelector:
     node-role.kubernetes.io/worker: ""
@@ -15,10 +16,10 @@ spec:
       receiveInterval: 200
       transmitInterval: 200
     routers:
-    - asn: 65501
+    - asn: {{ .Values.frr.config.asn }}
       neighbors:
-      - address: 10.166.110.254
-        asn: 64512
+      - address: {{ .Values.frr.config.neighbor.uplinka }}
+        asn: {{ .Values.frr.config.peerasn }}
         disableMP: true
         bfdProfile: bfd-default
         toReceive:
@@ -33,8 +34,8 @@ spec:
             mode: all
             # prefixes:
             # - 10.200.0.0/16
-      - address: 10.166.111.254
-        asn: 64512
+      - address: {{ .Values.frr.config.neighbor.uplinkb }}
+        asn: {{ .Values.frr.config.peerasn }}
         disableMP: true
         bfdProfile: bfd-default
         toReceive:
@@ -50,11 +51,7 @@ spec:
             # prefixes:
             # - 10.200.0.0/16
     ## route leak default vrf bgp routes into tenants
-    - asn: 65501
-      imports:
-      - vrf: default
-      vrf: tenanta
-    - asn: 65501
-      imports:
-      - vrf: default
-      vrf: tenantb
+{{- with .Values.frr.config.routeleak }} 
+{{ toYaml . | indent 4 }}
+{{ end -}}
+{{ end -}}

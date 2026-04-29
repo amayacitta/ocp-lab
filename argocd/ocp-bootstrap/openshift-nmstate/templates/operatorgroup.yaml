@@ -1,0 +1,12 @@
+{{- if .Values.nmstate.enabled }}
+piVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-nmstate
+  namespace: {{ .Values.nmstate.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  targetNamespaces:
+  - {{ .Values.nmstate.namespace }}
+{{ end -}}
