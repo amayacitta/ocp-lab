@@ -5,7 +5,7 @@ metadata:
   name: openshift-gitops-cluster-role-binding
 subjects:
   - kind: ServiceAccount
-    name: openshift-gitops-applicationset-controller
+    name: openshift-gitops-argocd-application-controller
     namespace: {{ .Values.gitops.namespace }}
   - kind: ServiceAccount
     name: openshift-gitops-applicationset-controller
