@@ -8,8 +8,13 @@ compute:
   hyperthreading: Enabled
   name: worker
   platform:
-    vsphere: {}
-  replicas: 2
+    vsphere: 
+      osDisk:
+        diskSizeGB: 250
+      cpus: 4
+      coresPerSocket: 2
+      memoryMB: 8192
+  replicas: 1
 controlPlane:
   architecture: amd64
   hyperthreading: Enabled
@@ -39,7 +44,7 @@ platform:
           datacenter: home-m01-dc01
           datastore: /home-m01-dc01/datastore/local-esx01
           computeCluster: /home-m01-dc01/host/home-m01-cl01
-          folder: /home-m01-dc01/vm/OCP
+          folder: /home-m01-dc01/vm/OCP/Region01
           networks:
             # the first network in the below array becomees the machine network
             # the other two will be used for BGP peering
