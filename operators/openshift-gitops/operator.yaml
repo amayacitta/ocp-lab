@@ -1,20 +1,3 @@
-# ## grant full cluster admin to 
-# kind: ClusterRoleBinding
-# apiVersion: rbac.authorization.k8s.io/v1
-# metadata:
-#   name: openshift-gitops-cluster-role-binding
-# subjects:
-#   - kind: ServiceAccount
-#     name: openshift-gitops-argocd-application-controller
-#     namespace: openshift-gitops
-#   - kind: ServiceAccount
-#     name: openshift-gitops-argocd-applicationset-controller
-#     namespace: openshift-gitops
-# roleRef:
-#   apiGroup: rbac.authorization.k8s.io
-#   kind: ClusterRole
-#   name: cluster-admin
----
 apiVersion: v1
 kind: Namespace
 metadata:
