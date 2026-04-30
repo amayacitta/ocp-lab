@@ -17,7 +17,23 @@ spec:
     routers:
     - asn: {{ .Values.frr.config.asn }}
       neighbors:
-      - address: {{ .Values.frr.config.neighbor }}
+      - address: {{ .Values.frr.config.neighbor.uplinka }}
+        asn: {{ .Values.frr.config.peerasn }}
+        disableMP: true
+        bfdProfile: bfd-default
+        toReceive:
+          allowed:
+            mode: all
+            # mode: filtered
+            # prefixes:
+            # - prefix: 10.0.0.0/8
+            #   ge: 8
+        toAdvertise:
+          allowed:
+            mode: all
+            # prefixes:
+            # - 10.200.0.0/16
+      - address: {{ .Values.frr.config.neighbor.uplinkb }}
         asn: {{ .Values.frr.config.peerasn }}
         disableMP: true
         bfdProfile: bfd-default
