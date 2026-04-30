@@ -7,12 +7,12 @@ tenants:
       - 10.166.250.0/24
     namespaces:
       - tenanta-app01
-      - tenanta-app02
+      #- tenanta-app02
 
-  tenantb:
-    cudn: tenantb
-    subnets:
-      - 10.166.251.0/24
-    namespaces:
-      - tenantb-app01
-      - tenantb-app02
+  # tenantb:
+  #   cudn: tenantb
+  #   subnets:
+  #     - 10.166.251.0/24
+  #   namespaces:
+  #     - tenantb-app01
+  #     - tenantb-app02
