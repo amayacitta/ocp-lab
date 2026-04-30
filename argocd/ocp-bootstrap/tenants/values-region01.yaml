@@ -1,5 +1,5 @@
 tenants:
-  enabled: true
+  enabled: false
 
   tenanta:
     cudn: tenanta

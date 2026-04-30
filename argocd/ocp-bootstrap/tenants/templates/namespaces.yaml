@@ -8,7 +8,7 @@ metadata:
   name: {{ $ns }}
   labels:
     k8s.ovn.org/primary-user-defined-network: ""
-    k8s.ovn.org/primary-network: "{{ $tenant.cudn }}"
+    #k8s.ovn.org/primary-network: "{{ $tenant.cudn }}"
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
 ---
