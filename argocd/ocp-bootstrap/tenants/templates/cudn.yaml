@@ -1,32 +1,32 @@
-{{- if .Values.tenants.enabled }}
-{{- range $tenantName, $tenant := .Values.tenants }}
-{{- if ne $tenantName "enabled" }}
-apiVersion: k8s.ovn.org/v1
-kind: ClusterUserDefinedNetwork
-metadata:
-  name: {{ $tenant.cudn }}
-  labels:
-    infra.aclab.uk/advertise: "true"
-spec:
-  namespaceSelector:
-    matchExpressions:
-      - key: kubernetes.io/metadata.name
-        operator: In
-        values:
-{{- range $tenant.namespaces }}
-          - {{ . }}
-{{- end }}
-  network:
-    layer2:
-      ipam:
-        lifecycle: Persistent
-      role: Primary
-      subnets:
-{{- range $tenant.subnets }}
-        - {{ . }}
-{{- end }}
-    topology: Layer2
----
-{{- end }}
-{{- end }}
-{{- end }}
+# {{- if .Values.tenants.enabled }}
+# {{- range $tenantName, $tenant := .Values.tenants }}
+# {{- if ne $tenantName "enabled" }}
+# apiVersion: k8s.ovn.org/v1
+# kind: ClusterUserDefinedNetwork
+# metadata:
+#   name: {{ $tenant.cudn }}
+#   labels:
+#     infra.aclab.uk/advertise: "true"
+# spec:
+#   namespaceSelector:
+#     matchExpressions:
+#       - key: kubernetes.io/metadata.name
+#         operator: In
+#         values:
+# {{- range $tenant.namespaces }}
+#           - {{ . }}
+# {{- end }}
+#   network:
+#     layer2:
+#       ipam:
+#         lifecycle: Persistent
+#       role: Primary
+#       subnets:
+# {{- range $tenant.subnets }}
+#         - {{ . }}
+# {{- end }}
+#     topology: Layer2
+# ---
+# {{- end }}
+# {{- end }}
+# {{- end }}
