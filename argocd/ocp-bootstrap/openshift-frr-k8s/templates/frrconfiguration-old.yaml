@@ -1,0 +1,56 @@
+# {{- if .Values.frr.enabled }}
+# apiVersion: frrk8s.metallb.io/v1beta1
+# kind: FRRConfiguration
+# metadata:
+#   name: {{ .Values.frr.config.name }}
+#   namespace: {{ .Values.frr.config.namespace }}
+# spec:
+#   nodeSelector:
+#     matchLabels:
+#       node-role.kubernetes.io/worker: ""
+#   bgp:
+#     bfdProfiles:
+#     - detectMultiplier: 4
+#       name: bfd-default
+#       receiveInterval: 200
+#       transmitInterval: 200
+#     routers:
+#     - asn: {{ .Values.frr.config.asn }}
+#       neighbors:
+#       - address: {{ .Values.frr.config.neighbor.uplinka }}
+#         asn: {{ .Values.frr.config.peerasn }}
+#         disableMP: true
+#         bfdProfile: bfd-default
+#         toReceive:
+#           allowed:
+#             mode: all
+#             # mode: filtered
+#             # prefixes:
+#             # - prefix: 10.0.0.0/8
+#             #   ge: 8
+#         toAdvertise:
+#           allowed:
+#             mode: all
+#             # prefixes:
+#             # - 10.200.0.0/16
+#       - address: {{ .Values.frr.config.neighbor.uplinkb }}
+#         asn: {{ .Values.frr.config.peerasn }}
+#         disableMP: true
+#         bfdProfile: bfd-default
+#         toReceive:
+#           allowed:
+#             mode: all
+#             # mode: filtered
+#             # prefixes:
+#             # - prefix: 10.0.0.0/8
+#             #   ge: 8
+#         toAdvertise:
+#           allowed:
+#             mode: all
+#             # prefixes:
+#             # - 10.200.0.0/16
+#     ## route leak default vrf bgp routes into tenants
+# {{- with .Values.frr.config.routeleak }} 
+# {{ toYaml . | indent 4 }}
+# {{ end -}}
+# {{ end -}}
