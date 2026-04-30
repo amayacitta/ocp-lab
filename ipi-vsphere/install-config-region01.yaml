@@ -47,10 +47,8 @@ platform:
           folder: /home-m01-dc01/vm/OCP/Region01
           networks:
             # the first network in the below array becomees the machine network
-            # the other two will be used for BGP peering
+            # others can be added for other use cases, i.e. storage etc
             - dp-ocp-mgmt-v109
-            - dp-ocp-uplink-a-v110
-            - dp-ocp-uplink-b-v111
 networking:
   networkType: OVNKubernetes
   clusterNetwork:
