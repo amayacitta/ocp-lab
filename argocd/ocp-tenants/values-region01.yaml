@@ -7,7 +7,7 @@ tenants:
       - 10.166.250.0/24
     namespaces:
       - tenanta-app01
-      #- tenanta-app02
+      - tenanta-app02
 
   # tenantb:
   #   cudn: tenantb
