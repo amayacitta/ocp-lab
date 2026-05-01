@@ -17,10 +17,10 @@ spec:
           - {{ . }}
 {{- end }}
   network:
-    layer2:
+    layer2:     # layer2 | layer3 | localnet | see oc explain ClusterUserDefinedNetwork.spec.network
       ipam:
         lifecycle: Persistent
-      role: Primary
+      role: Primary             
       subnets:
 {{- range $tenant.subnets }}
         - {{ . }}
