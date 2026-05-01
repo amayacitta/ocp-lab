@@ -20,7 +20,6 @@ spec:
     layer2:     # layer2 | layer3 | localnet | see oc explain ClusterUserDefinedNetwork.spec.network localnet is L2 but to physical external network, only supported with secondaries
       ipam:
         lifecycle: Persistent
-        # mode: Enabled           #     Enabled | Disabled | disabled only works for secondaries and will assign mac not ip address
       role: Primary
       subnets:
 {{- range $tenant.subnets }}
