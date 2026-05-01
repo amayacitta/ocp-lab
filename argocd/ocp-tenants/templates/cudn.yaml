@@ -17,7 +17,7 @@ spec:
           - {{ . }}
 {{- end }}
   network:
-    layer2:     # layer2 | layer3 | localnet | see oc explain ClusterUserDefinedNetwork.spec.network localnet is L2 but to physical external network, only supported with secondaries
+    layer2: 
       ipam:
         lifecycle: Persistent
       role: Primary
