@@ -3,7 +3,7 @@
 apiVersion: k8s.ovn.org/v1
 kind: RouteAdvertisements
 metadata:
-  name: cudn-route-advertisement-workers
+  name: cudn-route-advertisement
 spec:
   nodeSelector: {}    # must be all nodes when advertising PodNetwork
   frrConfigurationSelector: {}
