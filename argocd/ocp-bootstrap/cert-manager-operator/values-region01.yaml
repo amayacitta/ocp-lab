@@ -1,5 +1,16 @@
+## control of regional cluster deployments
+clusters:
+  region01:
+    enabled: true
+  region02:
+    enabled: false
+
+## control of certificate manager operator, subscription and configuration
 certmanager:
   enabled: true
   namespace: cert-manager-operator
   installPlanApproval: Automatic     # Automatic | Manual
   channel: stable-v1.19     # stable-v1.19 | stable-v1.18 | stable-v1
+  ClusterIssuer:
+    name: ""
+    secretName: ""
