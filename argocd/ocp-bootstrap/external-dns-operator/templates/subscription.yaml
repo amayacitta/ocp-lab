@@ -5,7 +5,7 @@ metadata:
   name: external-dns-operator
   namespace: {{ .Values.externaldns.namespace }}
 spec:
-  channel: {{ .Values.certmanager.channel }}
+  channel: {{ .Values.externaldns.channel }}
   installPlanApproval: {{ .Values.externaldns.installPlanApproval }}
   name: external-dns-operator
   source: redhat-operators
