@@ -1,4 +1,4 @@
-{{- if .Values.kubevirt.enabled }}
+{{- if .Values.certmanager.enabled }}
 apiVersion: v1
 kind: Namespace
 metadata:
