@@ -8,8 +8,8 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   channel: {{ .Values.certmanager.channel }}
+  installPlanApproval: {{ .Values.certmanager.installPlanApproval }}
   name: openshift-cert-manager-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  installPlanApproval: {{ .Values.certmanager.installPlanApproval }}
 {{ end -}}

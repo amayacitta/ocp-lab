@@ -1,0 +1,11 @@
+{{- if .Values.externaldns.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: external-dns-operator
+  namespace: {{ .Values.externaldns.namespace }}
+spec:
+  upgradeStrategy: Default
+  targetNamespaces:
+  - {{ .Values.externaldns.namespace }}
+{{ end -}}

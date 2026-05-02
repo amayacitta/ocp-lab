@@ -1,0 +1,5 @@
+externaldns:
+  enabled: true
+  namespace: external-dns-operator
+  installPlanApproval: Automatic     # Automatic | Manual
+  channel: stable-v1.3

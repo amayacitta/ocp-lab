@@ -1,0 +1,13 @@
+{{- if .Values.externaldns.enabled }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.externaldns.namespace }}
+  labels:
+    openshift.io/cluster-monitoring: "true"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  finalizers:
+  - kubernetes
+{{ end -}}
