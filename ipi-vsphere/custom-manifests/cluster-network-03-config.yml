@@ -16,7 +16,9 @@ spec:
       routeAdvertisements: Enabled
       egressIPConfig: {}
       ipv4:
-        internalJoinSubnet: 100.64.0.0/16
+        internalJoinSubnet: 100.64.0.0/16     # used for transit networks between ovs gateway and transit routers
+      gatewayConfig:
+        routingViaHost: false # true | false - default is false. If true OVN you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack
     type: OVNKubernetes
   disableNetworkDiagnostics: false
   managementState: Managed
