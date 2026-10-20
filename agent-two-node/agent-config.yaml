@@ -1,0 +1,80 @@
+apiVersion: v1alpha1
+kind: AgentConfig
+rendezvousIP: 10.166.1.10       # must be first master node which instantiates the bootstrap process
+minimalISO: false                 # set to true to generate a minimal ISO without rootfs, will require internet access to pull during install. Set to false for offline install.
+hosts:
+- hostname: master0
+  role: master
+  rootDeviceHints:
+    deviceName: "/dev/nvme0n1"    # 500GB NVMe
+  interfaces:
+   - name: enp5s0f0np0  # sfp+ 01
+     macAddress: 38:05:25:34:3f:93
+   - name: enp5s0f1np1  # sfp+ 02
+     macAddress: 38:05:25:34:3f:94
+  networkConfig:
+    interfaces:
+      - name: bond0-lan
+        description: Bond enslaving enp5s0f0np0 and enp5s0f1np1
+        type: bond
+        state: up
+        mac-address: 38:05:25:34:3f:93    # physical mac of enp5s0f0np0
+        ipv4:
+          enabled: true
+          dhcp: true
+        ipv6:
+          enabled: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '140'
+            primary: enp5s0f0np0
+          port:
+           - enp5s0f0np0
+           - enp5s0f1np1
+- hostname: master1
+  role: master
+  rootDeviceHints:
+    deviceName: "/dev/nvme0n1"    # 500GB NVMe
+  interfaces:
+   - name: enp5s0f0np0  # sfp+ 01
+     macAddress: 38:05:25:34:46:27
+   - name: enp5s0f1np1  # sfp+ 02
+     macAddress: 38:05:25:34:46:28
+  networkConfig:
+    interfaces:
+      - name: bond0-lan
+        description: Bond enslaving enp5s0f0np0 and enp5s0f1np1
+        type: bond
+        state: up
+        mac-address: 38:05:25:34:46:27   # physical mac of enp5s0f0np0
+        ipv4:
+          enabled: true
+          dhcp: true
+        ipv6:
+          enabled: false
+        link-aggregation:
+          mode: active-backup
+          options:
+            miimon: '140'
+            primary: enp5s0f0np0
+          port:
+           - enp5s0f0np0
+           - enp5s0f1np1
+- hostname: arbiter
+  role: arbiter
+  interfaces:
+   - name: ens33 
+     macAddress: 38:05:25:34:39:93
+  networkConfig:
+    interfaces:
+      - name: ens33
+        description: Default interface ens33
+        type: ethernet
+        state: up
+        mac-address: 38:05:25:34:39:93
+        ipv4:
+          enabled: true
+          dhcp: true
+        ipv6:
+          enabled: false
