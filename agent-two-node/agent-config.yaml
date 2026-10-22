@@ -64,15 +64,15 @@ hosts:
 - hostname: arbiter
   role: arbiter
   interfaces:
-   - name: ens33 
-     macAddress: 38:05:25:34:39:93
+   - name: eno1 
+     macAddress: 54:B2:03:F0:BA:AD
   networkConfig:
     interfaces:
-      - name: ens33
-        description: Default interface ens33
+      - name: eno1
+        description: Default interface eno1
         type: ethernet
         state: up
-        mac-address: 38:05:25:34:39:93
+        mac-address: 54:B2:03:F0:BA:AD
         ipv4:
           enabled: true
           dhcp: true
