@@ -1,2 +1,2 @@
 #!ipxe
-exit
+sanboot --no-describe --drive 0 --filename \EFI\redhat\grubx64.efi
