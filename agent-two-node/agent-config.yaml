@@ -63,6 +63,8 @@ hosts:
            - enp5s0f1np1
 - hostname: arbiter
   role: arbiter
+  rootDeviceHints:
+    deviceName: "/dev/sda"    # 60GB SSD
   interfaces:
    - name: eno1 
      macAddress: 54:B2:03:F0:BA:AD
