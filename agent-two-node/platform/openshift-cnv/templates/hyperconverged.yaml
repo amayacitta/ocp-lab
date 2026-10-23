@@ -9,17 +9,6 @@ metadata:
     argocd.argoproj.io/hook: PostSync
 spec:
   featureGates:
-  - CPUManager
-  - Snapshot
-  - ExpandDisks
-  - HostDevices
-  - VMExport
-  - KubevirtSeccompProfile
-  - LiveUpdateNADRef
-  - PanicDevices
-  - WithHostModelCPU
-  - HypervStrictCheck
-  - VideoConfig
-  - DecentralizedLiveMigration
-  - Hotplug}}Volumes
+    - name: Template
+      state: Enabled
 {{ end -}}
