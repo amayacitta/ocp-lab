@@ -1,0 +1,16 @@
+## patch the default gitops clusterwide argocd instance to include the synced ldap permissions
+{{- if .Values.chart.enabled }}
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: openshift-gitops
+  namespace: openshift-gitops
+spec:
+  rbac:
+    defaultPolicy: ""
+    policy: |
+      g, system:cluster-admins, role:admin
+      g, cluster-admins, role:admin
+      g, OpenShift Administrators, role:admin
+    scopes: '[groups]'
+{{ end -}}

@@ -1,0 +1,6 @@
+chart:
+  enabled: true
+
+gitops:
+  namespace: openshift-gitops
+  ClusterRole: cluster-admin
