@@ -24,4 +24,6 @@ spec:
     - DecentralizedLiveMigration
     - HotplugVolumes
     - Template
+  workloadSources:
+    enableCommonBootImageImport: false
 {{ end -}}
