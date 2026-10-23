@@ -1,0 +1,48 @@
+{{- if and .Values.argocd.enabled .Values.argocd.applicationset.bootstrap.apps.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: openshift-apps
+  namespace: {{ .Values.argocd.applicationset.bootstrap.apps.namespace }}
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+        - git:
+            repoURL: {{ .Values.argocd.applicationset.bootstrap.apps.git.repoURL | quote }}
+            revision: {{ .Values.argocd.applicationset.bootstrap.apps.git.targetRevision | quote }}
+            directories:
+            - path: {{ .Values.argocd.applicationset.bootstrap.apps.git.path | quote }}
+        - clusters:
+            selector:{{ toYaml (required "argocd.clusters.rhocp01.selector is required" .Values.argocd.clusters.rhocp01.selector) | nindent 14 }}
+  template:
+    metadata:
+      name: {{ printf "'{{ printf \"a-%%s-%%s\" .nameNormalized (base .path.path) | trunc 63 | trimSuffix \"-\" }}'" }}
+    spec:
+      project: {{ .Values.argocd.applicationset.bootstrap.apps.project | quote }}
+      source:
+        repoURL: {{ .Values.argocd.applicationset.bootstrap.apps.git.repoURL | quote }}
+        targetRevision: {{ .Values.argocd.applicationset.bootstrap.apps.git.targetRevision | quote }}
+        path: {{ printf "{{.path.path}}" | quote }}
+        helm:
+          valueFiles:
+            - {{ .Values.argocd.clusters.rhocp01.helmValuesFile | quote }}
+          releaseName: {{ printf "'{{ printf \"a-%%s-%%s\" .nameNormalized (base .path.path) | trunc 63 | trimSuffix \"-\" }}'" }}
+      destination:
+        server: {{ printf "{{.server}}" | quote }}
+        namespace: '{{ printf "{{ base .path.path }}" }}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: {{ .Values.argocd.applicationset.bootstrap.apps.syncPolicy.prune }}
+          selfHeal: true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+{{ end -}}

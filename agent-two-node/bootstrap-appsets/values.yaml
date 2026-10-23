@@ -1,0 +1,35 @@
+argocd:
+  # Global enable/disable flag for this Helm chart.
+  enabled: true
+
+  clusters:
+    rhocp01:
+      helmValuesFile: values-rhocp01.yaml
+      selector:
+        matchLabels:
+          type: openshift
+          env: dev
+
+  # ApplicationSet settings.
+  applicationset:
+    bootstrap:
+      platform:
+        enabled: true
+        namespace: openshift-gitops-operator
+        project: default
+        git:
+          repoURL: https://github.com/amayacitta/vcf-argocd.git
+          path: agent-two-node/platform/*
+          targetRevision: main
+        syncPolicy:
+          prune: true
+      apps:
+        enabled: true
+        namespace: openshift-gitops-operator
+        project: default
+        git:
+          repoURL: https://github.com/amayacitta/vcf-argocd.git
+          path: agent-two-node/apps/*
+          targetRevision: main
+        syncPolicy:
+          prune: true
