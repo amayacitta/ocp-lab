@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.kubevirt.namespace }}
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/hook: PostSync
+    kubevirt.kubevirt.io/jsonpatch: '[{"op":"add","path":"/spec/configuration/developerConfiguration/featureGates/-","value":"Template"}]'      ## enable native VM templates
 spec:
   enableCommonBootImageImport: true
   virtualMachineOptions:
