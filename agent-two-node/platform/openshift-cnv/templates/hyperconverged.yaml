@@ -10,6 +10,7 @@ metadata:
 spec:
   configuration:
     developerConfiguration:
+      cpuAllocationRatio: 10
       featureGates:
       - CPUManager
       - Snapshot
@@ -25,6 +26,6 @@ spec:
       - DecentralizedLiveMigration
       - HotplugVolumes
       - Template
-  workloadSources:
-    enableCommonBootImageImport: false
+      memoryOvercommit: 100
+    evictionStrategy: LiveMigrate
 {{ end -}}
