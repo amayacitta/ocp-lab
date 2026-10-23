@@ -8,7 +8,4 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/hook: PostSync
 spec:
-  featureGates:
-    - name: Template
-      state: Enabled
 {{ end -}}
