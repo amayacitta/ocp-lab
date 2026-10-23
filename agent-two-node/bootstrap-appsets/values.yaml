@@ -15,20 +15,20 @@ argocd:
     bootstrap:
       platform:
         enabled: true
-        namespace: openshift-gitops-operator
+        namespace: openshift-gitops
         project: default
         git:
-          repoURL: https://github.com/amayacitta/vcf-argocd.git
+          repoURL: https://github.com/amayacitta/ocp-lab.git
           path: agent-two-node/platform/*
           targetRevision: main
         syncPolicy:
           prune: true
       apps:
         enabled: true
-        namespace: openshift-gitops-operator
+        namespace: openshift-gitops
         project: default
         git:
-          repoURL: https://github.com/amayacitta/vcf-argocd.git
+          repoURL: https://github.com/amayacitta/ocp-lab.git
           path: agent-two-node/apps/*
           targetRevision: main
         syncPolicy:
