@@ -8,24 +8,18 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/hook: PostSync
 spec:
-  configuration:
-    developerConfiguration:
-      cpuAllocationRatio: 10
-      featureGates:
-      - CPUManager
-      - Snapshot
-      - ExpandDisks
-      - HostDevices
-      - VMExport
-      - KubevirtSeccompProfile
-      - LiveUpdateNADRef
-      - PanicDevices
-      - WithHostModelCPU
-      - HypervStrictCheck
-      - VideoConfig
-      - DecentralizedLiveMigration
-      - HotplugVolumes
-      - Template
-      memoryOvercommit: 100
-    evictionStrategy: LiveMigrate
+  featureGates:
+  - CPUManager
+  - Snapshot
+  - ExpandDisks
+  - HostDevices
+  - VMExport
+  - KubevirtSeccompProfile
+  - LiveUpdateNADRef
+  - PanicDevices
+  - WithHostModelCPU
+  - HypervStrictCheck
+  - VideoConfig
+  - DecentralizedLiveMigration
+  - Hotplug}}Volumes
 {{ end -}}
