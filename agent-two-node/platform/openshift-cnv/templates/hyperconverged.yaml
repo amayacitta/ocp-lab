@@ -8,22 +8,23 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/hook: PostSync
 spec:
-  developerConfiguration:
-    featureGates:
-    - CPUManager
-    - Snapshot
-    - ExpandDisks
-    - HostDevices
-    - VMExport
-    - KubevirtSeccompProfile
-    - LiveUpdateNADRef
-    - PanicDevices
-    - WithHostModelCPU
-    - HypervStrictCheck
-    - VideoConfig
-    - DecentralizedLiveMigration
-    - HotplugVolumes
-    - Template
+  configuration:
+    developerConfiguration:
+      featureGates:
+      - CPUManager
+      - Snapshot
+      - ExpandDisks
+      - HostDevices
+      - VMExport
+      - KubevirtSeccompProfile
+      - LiveUpdateNADRef
+      - PanicDevices
+      - WithHostModelCPU
+      - HypervStrictCheck
+      - VideoConfig
+      - DecentralizedLiveMigration
+      - HotplugVolumes
+      - Template
   workloadSources:
     enableCommonBootImageImport: false
 {{ end -}}
