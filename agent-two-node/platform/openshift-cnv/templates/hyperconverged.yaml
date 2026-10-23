@@ -19,7 +19,7 @@ spec:
   ksmConfiguration: {}
   evictionStrategy: LiveMigrate
   featureGates:
-    DecentralizedLiveMigration: true  # cross cluster migration in preview
+    #decentralizedLiveMigration: true  # cross cluster migration in preview
     incrementalBackup: false  # incrimental backup in preview
     enableMultiArchBootImageImport: false
     downwardMetrics: false
