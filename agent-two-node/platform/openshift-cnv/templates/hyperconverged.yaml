@@ -8,4 +8,29 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/hook: PostSync
 spec:
+  enableCommonBootImageImport: true
+  virtualMachineOptions:
+    disableFreePageReporting: false
+    disableSerialConsoleLog: false
+  higherWorkloadDensity:
+    memoryOvercommitPercentage: 100
+  enableApplicationAwareQuota: false
+  infra: {}
+  ksmConfiguration: {}
+  evictionStrategy: LiveMigrate
+  featureGates:
+    enableMultiArchBootImageImport: false
+    downwardMetrics: false
+    disableMDevConfiguration: false
+    declarativeHotplugVolumes: false
+    deployKubeSecondaryDNS: false
+    objectGraph: false
+    alignCPUs: false
+    containerPathVolumes: false
+    persistentReservation: false
+    incrementalBackup: false
+    videoConfig: true
+    decentralizedLiveMigration: true
+  resourceRequirements:
+    vmiCPUAllocationRatio: 10
 {{ end -}}
