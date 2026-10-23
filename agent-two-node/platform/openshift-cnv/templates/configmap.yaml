@@ -1,0 +1,10 @@
+{{- if .Values.chart.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubevirt-ui-features
+  namespace: openshift-cnv
+data:
+  treeView: "true"
+  treeViewFolders: "true"
+{{ end -}}
