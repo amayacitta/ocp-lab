@@ -1,5 +1,5 @@
 apiVersion: v2
-name: vks-bootstrap
+name: openshift-bootstrap
 description: A bootstrap helm chart for openshift platform components
 
 # A chart can be either an 'application' or a 'library' chart.

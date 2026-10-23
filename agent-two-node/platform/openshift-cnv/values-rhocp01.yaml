@@ -1,0 +1,8 @@
+chart:
+  enabled: true
+
+kubevirt:
+  namespace: openshift-cnv
+  installPlanApproval: Automatic     # Automatic | Manual
+  channel: stable
+  config: []

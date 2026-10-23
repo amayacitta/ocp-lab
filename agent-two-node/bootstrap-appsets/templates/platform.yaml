@@ -19,7 +19,7 @@ spec:
             selector:{{ toYaml (required "argocd.clusters.rhocp01.selector is required" .Values.argocd.clusters.rhocp01.selector) | nindent 14 }}
   template:
     metadata:
-      name: {{ printf "'{{ printf \"p-%%s-%%s\" .nameNormalized (base .path.path) | trunc 63 | trimSuffix \"-\" }}'" }}
+      name: {{ include "vks-bootstrap.generatedApplicationName" . }}
     spec:
       project: {{ .Values.argocd.applicationset.bootstrap.platform.project | quote }}
       source:
@@ -29,7 +29,6 @@ spec:
         helm:
           valueFiles:
             - {{ .Values.argocd.clusters.rhocp01.helmValuesFile | quote }}
-          releaseName: {{ printf "'{{ printf \"p-%%s-%%s\" .nameNormalized (base .path.path) | trunc 63 | trimSuffix \"-\" }}'" }}
       destination:
         server: {{ printf "{{.server}}" | quote }}
         namespace: '{{ printf "{{ base .path.path }}" }}'

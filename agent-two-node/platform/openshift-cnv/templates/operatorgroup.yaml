@@ -1,0 +1,10 @@
+{{- if .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: kubevirt-hyperconverged-group
+  namespace: {{ .Values.kubevirt.namespace }}
+spec:
+  targetNamespaces:
+    - openshift-cnv
+{{ end -}}
