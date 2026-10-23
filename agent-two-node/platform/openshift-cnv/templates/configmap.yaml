@@ -7,5 +7,4 @@ metadata:
 data:
   treeView: "true"
   treeViewFolders: "true"
-  vmTemplates: "true"
 {{ end -}}
