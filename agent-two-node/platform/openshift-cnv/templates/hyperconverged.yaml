@@ -19,6 +19,8 @@ spec:
   ksmConfiguration: {}
   evictionStrategy: LiveMigrate
   featureGates:
+    DecentralizedLiveMigration: true  # cross cluster migration in preview
+    incrementalBackup: false  # incrimental backup in preview
     enableMultiArchBootImageImport: false
     downwardMetrics: false
     disableMDevConfiguration: false
@@ -28,9 +30,7 @@ spec:
     alignCPUs: false
     containerPathVolumes: false
     persistentReservation: false
-    incrementalBackup: false
     videoConfig: true
-    decentralizedLiveMigration: true
   resourceRequirements:
     vmiCPUAllocationRatio: 10
 {{ end -}}
