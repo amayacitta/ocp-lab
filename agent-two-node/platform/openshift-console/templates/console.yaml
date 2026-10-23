@@ -1,0 +1,11 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: operator.openshift.io/v1
+kind: Console
+metadata:
+  name: cluster
+spec:
+  plugins:
+    - networking-console-plugin
+    - monitoring-plugin
+    - kubevirt-plugin
+{{ end -}}
