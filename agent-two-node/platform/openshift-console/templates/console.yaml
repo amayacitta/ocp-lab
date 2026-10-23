@@ -8,4 +8,5 @@ spec:
     - networking-console-plugin
     - monitoring-plugin
     - kubevirt-plugin
+    - gitops-plugin
 {{ end -}}
