@@ -6,7 +6,7 @@ metadata:
   namespace: node-health-check 
 spec:
   channel: stable 
-  installPlanApproval: Automatic 
+  installPlanApproval: Manual 
   name: node-healthcheck-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
