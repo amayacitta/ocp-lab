@@ -1,5 +1,5 @@
 apiVersion: v2
-name: console
+name: openshift-ingress-operator
 description: A Helm chart for openshift ingress operator
 
 # A chart can be either an 'application' or a 'library' chart.
