@@ -9,4 +9,5 @@ spec:
     - monitoring-plugin
     - kubevirt-plugin
     - gitops-plugin
+    - node-remediation-console-plugin
 {{ end -}}
