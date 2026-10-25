@@ -10,5 +10,4 @@ spec:
   name: node-healthcheck-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  package: node-healthcheck-operator
 {{ end -}}
