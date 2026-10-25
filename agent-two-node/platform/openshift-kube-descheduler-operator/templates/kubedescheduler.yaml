@@ -1,0 +1,16 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: operator.openshift.io/v1
+kind: KubeDescheduler
+metadata:
+  name: cluster
+  namespace: openshift-kube-descheduler-operator
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deschedulingIntervalSeconds: 3600
+  profiles:
+  - LongLifecycle 
+  mode: Predictive 
+  profileCustomizations:
+    devEnableEvictionsInBackground: true 
+{{ end -}}
