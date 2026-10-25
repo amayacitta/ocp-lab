@@ -10,5 +10,4 @@ spec:
   name: cluster-kube-descheduler-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: clusterkubedescheduleroperator.v5.4.3
 {{ end -}}

@@ -1,0 +1,7 @@
+chart:
+  enabled: true
+
+nmstate:
+  namespace: openshift-nmstate
+  installPlanApproval: Automatic     # Automatic | Manual
+  channel: stable
