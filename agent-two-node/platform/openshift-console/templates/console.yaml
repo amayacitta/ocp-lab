@@ -11,4 +11,5 @@ spec:
     - gitops-plugin
     - node-remediation-console-plugin
     - nmstate-console-plugin
+    - odf-console
 {{ end -}}
