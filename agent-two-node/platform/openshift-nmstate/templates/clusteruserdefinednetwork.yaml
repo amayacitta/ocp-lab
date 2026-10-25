@@ -10,7 +10,6 @@ spec:
         operator: In
         values:
           - default
-          - cert-manager
   network:
     localnet:
       ipam:
