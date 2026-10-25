@@ -1,0 +1,44 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: remediation.medik8s.io/v1alpha1
+kind: NodeHealthCheck
+metadata:
+  name: nodehealthcheck-workers
+spec:
+  # For critical environments, set the below value to the minimum number of nodes that you require to maintain the cluster workload. 
+  # Remediations will stop when this value is hit. Its the workload minus reserve capacity. 
+  # Acts as a safety brake to prevent remediation during widespread node failure.
+  minHealthy: 1  
+  # pauseRequests:  # PauseRequests will prevent any new remediation to start, while in-flight
+  #   - <pause_test_cluster>
+  remediationTemplate:
+  ### Self Node Remediation Template Reference ###
+    apiVersion: self-node-remediation.medik8s.io/v1alpha1
+    kind: SelfNodeRemediationTemplate
+    name: self-node-remediation-automatic-strategy-template
+    namespace: openshift-workload-availability
+  ### Machine API Remediation Template Reference ###
+  # remediationTemplate:
+  #   apiVersion: machine-deletion-remediation.medik8s.io/v1alpha1
+  #   kind: MachineDeletionRemediationTemplate
+  #   name: machinedeletionremediationtemplate
+  #   namespace: openshift-workload-availability
+  # escalatingRemediations:   # these will be used if the above does not succeed, an array can be specified and each entry will be tried in order.
+  #   - remediationTemplate:
+  #       apiVersion: machine-deletion-remediation.medik8s.io/v1alpha1
+  #       kind: MachineDeletionRemediationTemplate
+  #       name: machinedeletionremediationtemplate
+  #       namespace: openshift-workload-availability
+  #     order: 1
+  #     timeout: 300s
+  selector:
+    matchExpressions:
+      - key: node-role.kubernetes.io/worker
+        operator: Exists
+  unhealthyConditions:
+    - type: Ready
+      status: "False"
+      duration: 60s
+    - type: Ready
+      status: Unknown
+      duration: 60s
+{{ end -}}
