@@ -11,7 +11,8 @@ spec:
   deschedulingIntervalSeconds: 3600
   profiles:
   - LongLifecycle 
-  mode: Predictive 
+  mode: Automatic 
   profileCustomizations:
     devEnableEvictionsInBackground: true 
+  managementState: Managed
 {{ end -}}
