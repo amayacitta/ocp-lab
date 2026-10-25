@@ -1,0 +1,6 @@
+chart:
+  enabled: true
+  
+sealed-secrets:
+  fullnameOverride: sealed-secrets-controller
+  namespace: kube-system
