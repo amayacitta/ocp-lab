@@ -3,6 +3,8 @@ apiVersion: self-node-remediation.medik8s.io/v1alpha1
 kind: SelfNodeRemediationConfig
 metadata:
   name: self-node-remediation-config
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   isSoftwareRebootEnabled: true
 {{ end -}}  
