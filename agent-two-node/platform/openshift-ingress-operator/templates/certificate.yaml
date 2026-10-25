@@ -28,9 +28,9 @@ metadata:
 spec:
   privateKey:
     rotationPolicy: Always
-  commonName: "*.apps.demo-mgmt.demos.cc"
+  commonName: "*.apps.rhocp01.aclab.uk"
   dnsNames:
-    - "*.apps.demo-mgmt.demos.cc"
+    - "*.apps.rhocp01.aclab.uk"
   ipAddresses:
     - 10.166.1.101
   secretName: custom-default-ingress-tls-secret
