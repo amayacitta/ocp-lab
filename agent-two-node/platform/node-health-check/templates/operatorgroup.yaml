@@ -1,0 +1,7 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: node-health-check-operator
+  namespace: node-health-check
+{{ end -}}
