@@ -1,0 +1,11 @@
+{{- if .Values.chart.enabled }}
+apiVersion: helm.openshift.io/v1beta1
+kind: HelmChartRepository
+metadata:
+  generation: 1
+  name: sealed-secrets
+spec:
+  connectionConfig:
+    url: 'https://bitnami.github.io/sealed-secrets/'
+  name: sealed-secrets
+{{ end -}}
