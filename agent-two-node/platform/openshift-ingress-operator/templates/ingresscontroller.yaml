@@ -1,0 +1,9 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: default
+spec:
+  defaultCertificate:
+    name: custom-default-ingress-tls-secret
+{{ end -}}

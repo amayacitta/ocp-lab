@@ -1,0 +1,40 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: cert-manager.io/v1 
+kind: Certificate
+metadata:
+  name: custom-default-ingress-cert
+  annotations:
+    argo.argoproj.io/sync-wave: "-5"
+spec:
+  privateKey:
+    rotationPolicy: Always
+  commonName: "*.apps.rhocp01.aclab.uk"
+  dnsNames:
+    - "*.apps.rhocp01.aclab.uk"
+  ipAddresses:
+    - 10.166.1.101
+  secretName: custom-default-ingress-tls-secret
+  issuerRef:
+    name: ocp-sub01-clusterissuer
+    kind: ClusterIssuer
+---
+apiVersion: cert-manager.io/v1 
+kind: Certificate
+metadata:
+  name: custom-default-ingress-cert
+  namespace: openshift-ingress
+  annotations:
+    argo.argoproj.io/sync-wave: "-5"
+spec:
+  privateKey:
+    rotationPolicy: Always
+  commonName: "*.apps.demo-mgmt.demos.cc"
+  dnsNames:
+    - "*.apps.demo-mgmt.demos.cc"
+  ipAddresses:
+    - 10.166.1.101
+  secretName: custom-default-ingress-tls-secret
+  issuerRef:
+    name: ocp-sub01-clusterissuer
+    kind: ClusterIssuer
+{{ end -}}
