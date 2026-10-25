@@ -1,40 +1,13 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: bond0-lan-nncp
+  name: br-ex-network
 spec:
-  nodeSelector: 
-    kubernetes.io/hostname: master1
-    # node-role.kubernetes.io/worker: ""
-    # node-role.kubernetes.io/master: ""
+  nodeSelector:
+    node-role.kubernetes.io/worker: '' 
   desiredState:
-    interfaces:
-      ovn:
-        bridge-mappings:
-        - localnet: localnet-vlan-100      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-101      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-102      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-103      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-104      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-105      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-106      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-107      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
-        - localnet: localnet-vlan-109      # This is what has to attach to the NAD
-          bridge: br-ex                    # Using the same default bridge interface not a dedicated bond
-          state: present
+    ovn:
+      bridge-mappings:
+      - localnet: br-ex-network
+        bridge: br-ex 
+        state: present
