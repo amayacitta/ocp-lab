@@ -1,0 +1,11 @@
+chart:
+  enabled: true
+
+## control of certificate manager operator, subscription and configuration
+certmanager:
+  namespace: cert-manager-operator
+  installPlanApproval: Automatic     # Automatic | Manual
+  channel: stable-v1     # stable-v1.19 | stable-v1.18 | stable-v1
+  ClusterIssuer:
+    name: ""
+    secretName: ""

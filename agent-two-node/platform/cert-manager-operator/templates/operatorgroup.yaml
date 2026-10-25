@@ -1,0 +1,9 @@
+{{- if .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-cert-manager-operator
+  namespace: {{ .Values.certmanager.namespace }}
+spec:
+  targetNamespaces: []
+{{ end -}}
