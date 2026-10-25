@@ -1,0 +1,18 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: self-node-remediation.medik8s.io/v1alpha1
+kind: SelfNodeRemediationConfig
+metadata:
+  name: self-node-remediation-config
+spec:
+  apiServerTimeout: 5s
+  peerApiServerTimeout: 5s
+  hostPort: 30001
+  isSoftwareRebootEnabled: true
+  watchdogFilePath: /dev/watchdog
+  peerDialTimeout: 5s
+  peerUpdateInterval: 15m
+  apiCheckInterval: 15s
+  peerRequestTimeout: 7s
+  maxApiErrorThreshold: 3
+  minPeersForRemediation: 1
+{{ end -}}  
