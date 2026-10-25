@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: master0-local-pv-nvme1n1
+  name: master1-local-pv-nvme1n1
 spec:
   capacity:
-    storage: 950Gi
+    storage: 450Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
@@ -19,12 +19,12 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - master0
+          - master1
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: master0-local-pv-nvme2n1
+  name: master1-local-pv-nvme2n1
 spec:
   capacity:
     storage: 1700Gi
@@ -41,5 +41,5 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - master0
+          - master1
 {{ end -}}
