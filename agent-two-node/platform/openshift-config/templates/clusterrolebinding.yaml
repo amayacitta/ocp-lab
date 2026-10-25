@@ -10,11 +10,5 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: 54d8fdfc-ca39-421a-8477-7efc9a39da5b    ## object ID of group assigned to enterprise application
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: 3379f99c-bb50-40e7-a448-4be8dcec7308 
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
   name: "OpenShift Administrators"
 {{ end -}}
