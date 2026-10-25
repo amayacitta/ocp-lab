@@ -1,0 +1,52 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-ca
+  namespace: openshift-config
+data:
+  ca-bundle.crt: |-
+    -----BEGIN CERTIFICATE-----
+    MIIGATCCA+mgAwIBAgITeQAAAAdBzhNfSqJCXQAAAAAABzANBgkqhkiG9w0BAQsF
+    ADARMQ8wDQYDVQQDEwZSb290Q0EwHhcNMjYwNTAyMTc1MzQ2WhcNMzYwNTAyMTgw
+    MzQ2WjBOMQswCQYDVQQGEwJVSzENMAsGA1UECBMESG9tZTENMAsGA1UEBxMEaG9t
+    ZTEOMAwGA1UEChMFQUNMQUIxETAPBgNVBAMTCE9DUFN1YjAxMIICIjANBgkqhkiG
+    9w0BAQEFAAOCAg8AMIICCgKCAgEAyfkRVcJyTRkWidNy7BGhzLIch6bX8rLGeyoL
+    TVsBR3l2L1SX5rDiDFCMbsveaU5UobQdLditS0CIxSUkKDGuSRSeV0Zki3T/z2Aq
+    gfCSUhAvTru/yH+Y5ZF6EGfXllMxwNOZLJs16fgN642V8UKSGFGFB/XBods/PKfS
+    a67lLbHhj8tGlf19ttwIo8/JJRf7FZ+l4KMzdAOAdOapgvSaQH5FL3ze/yiTm+i/
+    tX+OHHggrHb175WkeBzd8+OMvMjd+2u2zV6VvwZE+X0DF5bl2Wz2fmHTfwFDCYa7
+    E8MFZz6CAGLNYjPlDaRoenEE1a2D3Yupu8+FYo2SqlU9Id2m46gfo/06ZEqpoRo/
+    sEkuRaGTiKPvUskp3NMLarK7RKk7k78adN3cgLqQw3sy3CG2kB+7yEKqo7CS80lx
+    mmkbQqWou/juPTSk3ftDVbgKs7B9dQrv2GS6tw2YSCg5yqukKsbaVC8aNucLUZBy
+    hYo5pexHXJzLkPA3aQjqewm7UwISAoANivJFZCoHD3WYQIggFYH1g5mHAMz1a+Pt
+    fr8BR4rZUjrdvuHUjyamYvfsHAHYWvcwZAQfPnBzvWrtKgRQ+vcILwvwwp59f5ao
+    STBQ9qJKEfUNkSvs1a5nnbvQ3QHZMyBFk0vcQe+4G7ywI9bq/8izuhOvz9Hgcz+4
+    7EzATnMCAwEAAaOCARMwggEPMBkGCSsGAQQBgjcUAgQMHgoAUwB1AGIAQwBBMB0G
+    A1UdDgQWBBTHHG1y1ZyMOeWZi9SQ95gU/WZ9BjAfBgNVHSMEGDAWgBST6f+G6blk
+    fPaUyZDzPPqMUsWzHjA/BgNVHR8EODA2MDSgMqAwhi5odHRwOi8vY3JsLmNvcnAu
+    YWNsYWIudWsvQ2VydEVucm9sbC9Sb290Q0EuY3JsMFMGCCsGAQUFBwEBBEcwRTBD
+    BggrBgEFBQcwAoY3aHR0cDovL2NydC5jb3JwLmFjbGFiLnVrL0NlcnRFbnJvbGwv
+    cm9vdGNhMDFfUm9vdENBLmNydDAPBgNVHRMBAf8EBTADAQH/MAsGA1UdDwQEAwIB
+    hjANBgkqhkiG9w0BAQsFAAOCAgEAgI6mlLeI5Ai8wXRMWdUGCg4zO55Yw9PzqC5f
+    pmBbs3OVmr9xOnfdbKIoWBc1jJibF7vwiF+2NHMZ6ZzszWRi3F1CZOz/AbHzRrIE
+    5nHraLvm7STFAvDEKztN1yHxH6c4csjBo3HjoGLRFJR4w2eKt8tdbgJEo/Mt7sX9
+    wDDW68Y1/VtkCxpBPDlSInWNfF6/IzM0HurZ5lP6dmvN4Nmsi/G77iEynZBNdcjp
+    wzQKtoMJ+w3ksnPyR0bZNQCBLln/InRKi341Qhqkp4fb+Tz+1wfPcZ8JmhXussEP
+    PzDFUUmq12SQsjKz0OZ6ZIg+htQaZqELv4C5e+1yAAolBQJWcSoxMLRq4ORKD+Kf
+    sNtvEBQyLOsiytAePFw8euoT7B4nuT2DMgXsefoChHTwOktRhemk3xAcVFQJep7E
+    +rwHk0gMl9tBdO65zkaPLnJbW9lk9VjfPNEHKcJwF6QvZF/DWfITHfQWyhPfw++O
+    C7xcR9QQBoShDHmFeMPRBwbA+3ZEzNXwac8/XfW+N0oLuyD5K1wV3aRbOQCgr6CW
+    +r/lh6KaSoWYg3esUM3s8JQeSOxnDAZFlp9OnWof3IY8XvhZQai4wusbI/Uhmn18
+    uaGyk6TA0iZmSoFuYB2jULojYsAALYrR3VgPeQcxaDxIykDJhyU1GxxJBo6UOe/N
+    RdheXXw=
+    -----END CERTIFICATE-----
+---
+apiVersion: config.openshift.io/v1
+kind: Proxy
+metadata:
+  name: cluster
+spec:
+  trustedCA:
+    name: custom-ca
+{{ end -}}

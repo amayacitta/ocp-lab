@@ -1,0 +1,32 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: cert-manager.io/v1 
+kind: Certificate
+metadata:
+  name: custom-kubeapi-cert
+  annotations:
+    argo.argoproj.io/sync-wave: "-5"
+spec:
+  privateKey:
+    rotationPolicy: Always
+  commonName: api.rhocp01.aclab.uk
+  dnsNames:
+    - api.rhocp01.aclab.uk
+  ipAddresses:
+    - 172.16.101.150
+  secretName: custom-kubeapi-tls-secret
+  issuerRef:
+    name: ocp-sub01-clusterissuer
+    kind: ClusterIssuer
+---
+apiVersion: config.openshift.io/v1
+kind: APIServer
+metadata:
+  name: cluster
+spec:
+  servingCerts:
+    namedCertificates:
+    - names:
+      - api.rhocp01.aclab.uk
+      servingCertificate:
+        name: custom-kubeapi-tls-secret
+{{ end -}}
