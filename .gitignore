@@ -1,3 +1,4 @@
 .DS_Store
 ocp-region01/*
 agent-two-node/rhocp01-install
+agent-two-node/sealed-secrets

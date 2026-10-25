@@ -1,0 +1,30 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    - mappingMethod: claim
+      name: Hatfield-Entra
+      openID:
+        claims:
+          email:
+            - email
+          groups:
+            - groups
+          name:
+            - name
+          preferredUsername:
+            - preferred_username
+            - email
+            - upn
+        clientID: a8417fbd-a427-4b7c-ad6a-d0f47d30a8ea
+        clientSecret:
+          name: entra-openid-client-secret
+        extraScopes: 
+          - profile
+          - email
+        issuer: 'https://login.microsoftonline.com/a21cd3ae-9238-41cd-a200-e47753c55dc6/v2.0'   # tenant id
+      type: OpenID
+{{ end -}}
