@@ -12,4 +12,5 @@ spec:
     - node-remediation-console-plugin
     - nmstate-console-plugin
     - odf-console
+    - odf-client-console
 {{ end -}}
