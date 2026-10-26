@@ -1,0 +1,23 @@
+{{- if .Values.chart.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: master0-local-nvme
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: localblock
+  local:
+    path: /dev/nvme0n1
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - master0
+{{ end -}}
