@@ -10,7 +10,7 @@ spec:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: localblock
-  volumeMode: block
+  volumeMode: Block
   local:
     path: /dev/nvme1n1
   nodeAffinity:
