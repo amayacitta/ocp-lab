@@ -24,7 +24,7 @@ spec:
     enableMultiArchBootImageImport: false
     downwardMetrics: false
     disableMDevConfiguration: false
-    declarativeHotplugVolumes: false
+    declarativeHotplugVolumes: true
     deployKubeSecondaryDNS: false
     objectGraph: false
     alignCPUs: false
