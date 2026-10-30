@@ -35,10 +35,10 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true
         automated:
+          enabled: false
           prune: {{ .Values.argocd.applicationset.bootstrap.platform.syncPolicy.prune }}
-          selfHeal: true
+          selfHeal: false
         retry:
           limit: 5
           backoff:
