@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: rhel-demo-vm-01-disk
 spec:
-  storageClassName: local-nvme-nvme2n1-workers
+  storageClassName: lvms-nvme-local-lvm-thin
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
