@@ -2,9 +2,9 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: openshift-nmstate
-  namespace: {{ .Values.nmstate.namespace }}
+  name: openshift-local-storage-jj9mc
 spec:
   targetNamespaces:
-  - {{ .Values.nmstate.namespace }}
+  - openshift-local-storage
+  upgradeStrategy: Default
 {{ end -}}
