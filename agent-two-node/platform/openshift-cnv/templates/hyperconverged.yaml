@@ -13,7 +13,7 @@ spec:
     disableFreePageReporting: false
     disableSerialConsoleLog: false
   higherWorkloadDensity:
-    memoryOvercommitPercentage: 100
+    memoryOvercommitPercentage: 150
   enableApplicationAwareQuota: false
   infra: {}
   ksmConfiguration: {}
