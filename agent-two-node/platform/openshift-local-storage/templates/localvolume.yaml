@@ -1,0 +1,22 @@
+{{- if .Values.chart.enabled }}
+apiVersion: local.storage.openshift.io/v1
+kind: LocalVolume
+metadata:
+  name: local-nvme-nvme2n1-workers
+  namespace: openshift-local-storage
+spec:
+  logLevel: Normal
+  managementState: Managed
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          - key: node-role.kubernetes.io/worker
+            operator: Exists
+  storageClassDevices:
+    - devicePaths:
+        - /dev/nvme2n1
+        - /dev/nvme0n1
+      fsType: ext4
+      storageClassName: local-nvme-nvme2n1-workers
+      volumeMode: Filesystem
+{{ end -}}
