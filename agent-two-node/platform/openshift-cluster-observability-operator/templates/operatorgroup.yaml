@@ -1,0 +1,8 @@
+{{- if .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-cluster-observability-operator-5kzcr
+spec:
+  upgradeStrategy: Default
+{{ end -}}
