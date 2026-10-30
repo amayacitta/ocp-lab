@@ -1,0 +1,8 @@
+{{- if .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-netobserv-operator-6w4dn
+spec:
+  upgradeStrategy: Default
+{{ end -}}

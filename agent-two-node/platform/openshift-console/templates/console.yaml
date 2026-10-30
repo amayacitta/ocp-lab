@@ -12,4 +12,6 @@ spec:
     - gitops-plugin
     - node-remediation-console-plugin
     - nmstate-console-plugin
+    - netobserv-plugin	
+    - netobserv-plugin-static
 {{ end -}}
