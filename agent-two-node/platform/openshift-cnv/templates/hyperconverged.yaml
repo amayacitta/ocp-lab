@@ -24,7 +24,7 @@ spec:
     enableMultiArchBootImageImport: false
     downwardMetrics: false
     disableMDevConfiguration: false
-    declarativeHotplugVolumes: true
+    declarativeHotplugVolumes: true   # advanced cdrom features
     deployKubeSecondaryDNS: false
     objectGraph: false
     alignCPUs: false
