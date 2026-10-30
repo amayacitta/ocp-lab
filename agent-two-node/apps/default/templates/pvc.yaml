@@ -1,0 +1,18 @@
+{{ if .Values.chart.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-01-disk
+spec:
+  storageClassName: ocs-external-storagecluster-ceph-rbd
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-demo-vm-01-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Block
+  resources:
+    requests:
+      storage: 30Gi
+{{ end -}}

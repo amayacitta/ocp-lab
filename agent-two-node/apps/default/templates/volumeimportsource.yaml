@@ -1,0 +1,12 @@
+## podman search --list-tags registry.redhat.io/rhel9/rhel-guest-image --tls-verify=false
+{{ if .Values.chart.enabled -}}
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: VolumeImportSource
+metadata:
+  name: rhel-demo-vm-01-import-source
+spec:
+  source:
+    registry:
+      url: "docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870"
+      pullMethod: node
+{{ end -}}
