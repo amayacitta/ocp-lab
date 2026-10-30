@@ -4,13 +4,13 @@ kind: PersistentVolumeClaim
 metadata:
   name: rhel-demo-vm-01-disk
 spec:
-  storageClassName: ocs-external-storagecluster-ceph-rbd
+  storageClassName: local-nvme-nvme2n1-workers-immediate
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
     name: rhel-demo-vm-01-import-source
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   volumeMode: Block
   resources:
     requests:
