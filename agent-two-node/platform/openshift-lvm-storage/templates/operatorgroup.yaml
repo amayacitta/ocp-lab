@@ -2,9 +2,9 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: openshift-local-storage-jj9mc
+  name: openshift-lvm-storage-f4bbz
 spec:
   targetNamespaces:
-  - openshift-local-storage
+  - openshift-lvm-storage
   upgradeStrategy: Default
 {{ end -}}
