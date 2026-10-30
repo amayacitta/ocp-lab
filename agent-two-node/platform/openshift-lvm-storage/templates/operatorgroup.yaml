@@ -1,0 +1,10 @@
+{{- if .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-local-storage-jj9mc
+spec:
+  targetNamespaces:
+  - openshift-local-storage
+  upgradeStrategy: Default
+{{ end -}}
