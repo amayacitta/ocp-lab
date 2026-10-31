@@ -2,7 +2,7 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: openshift-netobserv-operator-6w4dn
+  name: openshift-netobserv-operator
 spec:
   upgradeStrategy: Default
 {{ end -}}
