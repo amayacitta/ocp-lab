@@ -36,7 +36,7 @@ spec:
         syncOptions:
           - CreateNamespace=true
         automated:
-          enabled: true
+          enabled: false
           prune: {{ .Values.argocd.applicationset.bootstrap.platform.syncPolicy.prune }}
           selfHeal: false
         retry:
