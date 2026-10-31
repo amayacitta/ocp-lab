@@ -6,7 +6,7 @@ metadata:
 spec:
   namespaceSelector:
     matchLabels:
-      kubernetes.io/metadata.name: openshift-nmstate    # cluster wide network, place here for convienience 
+      kubernetes.io/metadata.name: default    # cluster wide network available to all namespaces if placed here
   network:
     localnet:
       ipam:
@@ -27,7 +27,7 @@ metadata:
 spec:
   namespaceSelector:
     matchLabels:
-      kubernetes.io/metadata.name: openshift-nmstate
+      kubernetes.io/metadata.name: default
   network:
     localnet:
       ipam:
