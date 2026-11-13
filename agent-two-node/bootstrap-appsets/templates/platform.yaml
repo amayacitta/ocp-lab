@@ -20,6 +20,8 @@ spec:
   template:
     metadata:
       name: {{ include "vks-bootstrap.generatedApplicationName" . }}
+      annotations:
+        argocd.argoproj.io/compare-options: ServerSideDiff=true
     spec:
       project: {{ .Values.argocd.applicationset.bootstrap.platform.project | quote }}
       source:
