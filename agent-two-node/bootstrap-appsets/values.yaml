@@ -32,7 +32,7 @@ appset:
           maxDuration: 3m
 
   apps:
-    enabled: false
+    enabled: true
     namespace: openshift-gitops
     project: default
     git:
