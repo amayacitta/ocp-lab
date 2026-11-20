@@ -1,35 +1,54 @@
-argocd:
-  # Global enable/disable flag for this Helm chart.
+chart:
   enabled: true
 
-  clusters:
-    rhocp01:
-      helmValuesFile: values-rhocp01.yaml
-      selector:
-        matchLabels:
-          type: openshift
-          env: dev
+clusters:
+  selector:
+    matchLabels:
+      type: openshift
+      env: dev
 
-  # ApplicationSet settings.
-  applicationset:
-    bootstrap:
-      platform:
-        enabled: true
-        namespace: openshift-gitops
-        project: default
-        git:
-          repoURL: https://github.com/amayacitta/ocp-lab.git
-          path: agent-two-node/platform/*
-          targetRevision: main
-        syncPolicy:
-          prune: true
-      apps:
-        enabled: true
-        namespace: openshift-gitops
-        project: default
-        git:
-          repoURL: https://github.com/amayacitta/ocp-lab.git
-          path: agent-two-node/apps/*
-          targetRevision: main
-        syncPolicy:
-          prune: true
+# AppSet settings.
+appset:
+  platform:
+    enabled: true
+    namespace: openshift-gitops
+    project: default
+    git:
+      repoURL: https://github.com/amayacitta/ocp-lab.git
+      path: agent-two-node/platform/*
+      targetRevision: main
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+      automated:
+        enabled: false
+        prune: false
+        selfHeal: false
+      retry:
+        limit: 5
+        backoff:
+          duration: 5s
+          factor: 2
+          maxDuration: 3m
+
+  apps:
+    enabled: false
+    namespace: openshift-gitops
+    project: default
+    git:
+      repoURL: https://github.com/amayacitta/ocp-lab.git
+      path: agent-two-node/apps/*
+      targetRevision: main
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+      automated:
+        enabled: false
+        prune: false
+        selfHeal: false
+      retry:
+        limit: 5
+        backoff:
+          duration: 5s
+          factor: 2
+          maxDuration: 3m

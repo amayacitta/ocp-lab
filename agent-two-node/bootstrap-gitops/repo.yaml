@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: github-amayacitta-ocp-lab
+  namespace: openshift-gitops
+stringData:
+  type: git
+  url: https://github.com/amayacitta/ocp-lab.git
+type: Opaque

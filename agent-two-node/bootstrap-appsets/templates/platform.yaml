@@ -1,9 +1,9 @@
-{{- if and .Values.argocd.enabled .Values.argocd.applicationset.bootstrap.platform.enabled }}
+{{- if and .Values.chart.enabled .Values.appset.platform.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: openshift-platform
-  namespace: {{ .Values.argocd.applicationset.bootstrap.platform.namespace }}
+  namespace: {{ .Values.appset.platform.namespace | quote }}
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -11,40 +11,32 @@ spec:
   - matrix:
       generators:
         - git:
-            repoURL: {{ .Values.argocd.applicationset.bootstrap.platform.git.repoURL | quote }}
-            revision: {{ .Values.argocd.applicationset.bootstrap.platform.git.targetRevision | quote }}
+            repoURL: {{ .Values.appset.platform.git.repoURL | quote }}
+            revision: {{ .Values.appset.platform.git.targetRevision | quote }}
             directories:
-            - path: {{ .Values.argocd.applicationset.bootstrap.platform.git.path | quote }}
+            - path: {{ .Values.appset.platform.git.path | quote }}
         - clusters:
-            selector:{{ toYaml (required "argocd.clusters.rhocp01.selector is required" .Values.argocd.clusters.rhocp01.selector) | nindent 14 }}
+            selector:
+{{- toYaml (required "clusters.selector is required" .Values.clusters.selector) | nindent 14 }}
   template:
     metadata:
-      name: {{ include "vks-bootstrap.generatedApplicationName" . }}
+      name: {{ printf "{{.nameNormalized}}-{{ base .path.path }}" | quote }}
       annotations:
         argocd.argoproj.io/compare-options: ServerSideDiff=true
     spec:
-      project: {{ .Values.argocd.applicationset.bootstrap.platform.project | quote }}
+      project: {{ .Values.appset.platform.project | quote }}
       source:
-        repoURL: {{ .Values.argocd.applicationset.bootstrap.platform.git.repoURL | quote }}
-        targetRevision: {{ .Values.argocd.applicationset.bootstrap.platform.git.targetRevision | quote }}
+        repoURL: {{ .Values.appset.platform.git.repoURL | quote }}
+        targetRevision: {{ .Values.appset.platform.git.targetRevision | quote }}
         path: {{ printf "{{.path.path}}" | quote }}
         helm:
           valueFiles:
-            - {{ .Values.argocd.clusters.rhocp01.helmValuesFile | quote }}
+            - {{ printf "{{ index .metadata.annotations \"bootstrap.amayacitta.co.uk/helm-values-file\" }}" | quote }}
       destination:
         server: {{ printf "{{.server}}" | quote }}
-        namespace: '{{ printf "{{ base .path.path }}" }}'
+        namespace: {{ printf "{{ base .path.path }}" | quote }}
+{{- with .Values.appset.platform.syncPolicy }}
       syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
-        automated:
-          enabled: true
-          prune: {{ .Values.argocd.applicationset.bootstrap.platform.syncPolicy.prune }}
-          selfHeal: true
-        retry:
-          limit: 5
-          backoff:
-            duration: 5s
-            factor: 2
-            maxDuration: 3m
+{{- toYaml . | nindent 8 }}
+{{- end }}
 {{ end -}}
