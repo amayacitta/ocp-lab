@@ -7,22 +7,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   deschedulingIntervalSeconds: 3600
-#   profiles:
-#   - LongLifecycle 
-#   mode: Automatic 
-#   profileCustomizations:
-#     devEnableEvictionsInBackground: true 
-#   managementState: Managed
-  spec:
-    managementState: Managed
-    deschedulingIntervalSeconds: 30
-    mode: Automatic
-    profiles:
-      - KubeVirtRelieveAndMigrate
-    profileCustomizations:
-      devEnableSoftTainter: true
-      devDeviationThresholds: AsymmetricLow
-      devActualUtilizationProfile: PrometheusCPUMemoryCombinedProfile
+spec:
+  managementState: Managed
+  deschedulingIntervalSeconds: 30
+  mode: Automatic
+  profiles:
+    - KubeVirtRelieveAndMigrate
+  profileCustomizations:
+    devEnableSoftTainter: true
+    devDeviationThresholds: AsymmetricLow
+    devActualUtilizationProfile: PrometheusCPUMemoryCombinedProfile
 {{ end -}}
