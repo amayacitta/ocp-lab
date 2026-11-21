@@ -21,9 +21,9 @@ appset:
       syncOptions:
         - CreateNamespace=true
       automated:
-        enabled: false
-        prune: false
-        selfHeal: false
+        enabled: true
+        prune: true
+        selfHeal: true
       retry:
         limit: 5
         backoff:
@@ -43,9 +43,9 @@ appset:
       syncOptions:
         - CreateNamespace=true
       automated:
-        enabled: false
-        prune: false
-        selfHeal: false
+        enabled: true
+        prune: true
+        selfHeal: true
       retry:
         limit: 5
         backoff:
