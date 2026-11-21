@@ -25,5 +25,5 @@ appVersion: "1.0"
 # chart dependencies
 dependencies:
   - name: sealed-secrets
-    version: 2.18.6
+    version: 2.22.0
     repository: https://bitnami.github.io/sealed-secrets/
