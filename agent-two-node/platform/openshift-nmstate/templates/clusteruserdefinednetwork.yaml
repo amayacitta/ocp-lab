@@ -3,6 +3,8 @@ apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
 metadata:
   name: vlan-101
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   namespaceSelector:
     matchLabels:
@@ -24,6 +26,8 @@ apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
 metadata:
   name: vlan-109
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   namespaceSelector:
     matchLabels:
