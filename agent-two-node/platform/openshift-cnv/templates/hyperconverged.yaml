@@ -1,6 +1,6 @@
 {{- if .Values.chart.enabled }}
 apiVersion: hco.kubevirt.io/v1
-kind: HyperConverged
+kind: hco.kubevirt.io/v1
 metadata:
   name: kubevirt-hyperconverged
   namespace: {{ .Values.kubevirt.namespace }}
