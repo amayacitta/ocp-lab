@@ -9,22 +9,12 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
     kubevirt.kubevirt.io/jsonpatch: '[{"op":"add","path":"/spec/configuration/developerConfiguration/featureGates/-","value":"Template"}]'      ## enable native VM templates
 spec:
-  enableCommonBootImageImport: true
-  virtualMachineOptions:
-    disableFreePageReporting: false
-    disableSerialConsoleLog: false
-  higherWorkloadDensity:
-    memoryOvercommitPercentage: 150   # memory density
-  enableApplicationAwareQuota: false
-  infra: {}
-  ksmConfiguration: {}
-  evictionStrategy: LiveMigrate
   featureGates:
     #decentralizedLiveMigration: true  # cross cluster migration in preview
     incrementalBackup: false  # incrimental backup in preview
     enableMultiArchBootImageImport: false
     downwardMetrics: false
-    disableMDevConfiguration: false
+    # disableMDevConfiguration: false # depricated in v5
     declarativeHotplugVolumes: true   # advanced cdrom features
     deployKubeSecondaryDNS: false
     objectGraph: false
@@ -32,6 +22,27 @@ spec:
     containerPathVolumes: false
     persistentReservation: false
     videoConfig: true
-  resourceRequirements:
+  virtualization:
+    evictionStrategy: LiveMigrate
+    higherWorkloadDensity:
+      memoryOvercommitPercentage: 150   # memory density
+    liveMigrationConfig:
+      allowAutoConverge: false
+      allowPostCopy: false
+      allowWorkloadDisruption: false
+      completionTimeoutPerGiB: 20
+      parallelMigrationsPerCluster: 5
+      parallelOutboundMigrationsPerNode: 1
+      progressTimeout: 150
+    mediatedDevicesConfiguration:
+      enabled: true
+    virtualMachineOptions:
+      disableFreePageReporting: false
+      disableSerialConsoleLog: false
     vmiCPUAllocationRatio: 10
+    workloadUpdateStrategy:
+      workloadUpdateMethods:
+      - LiveMigrate
+  workloadSources:
+    enableCommonBootImageImport: true
 {{ end -}}
