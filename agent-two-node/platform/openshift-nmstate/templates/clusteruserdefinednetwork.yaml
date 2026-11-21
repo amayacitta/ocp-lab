@@ -28,6 +28,7 @@ metadata:
   name: vlan-109
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   namespaceSelector:
     matchLabels:

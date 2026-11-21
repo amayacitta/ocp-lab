@@ -5,8 +5,6 @@ kind: ArgoCD
 metadata:
   name: openshift-gitops
   namespace: openshift-gitops
-  annotations:
-    argocd.argoproj.io/sync-wave: "-20"
 spec:
   rbac:
     defaultPolicy: ""
