@@ -4,5 +4,5 @@ kind: NMState
 metadata:
   name: nmstate
   annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-10"
 {{ end -}}

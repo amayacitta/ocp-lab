@@ -4,6 +4,8 @@ kind: Subscription
 metadata:
   name: openshift-cert-manager-operator
   namespace: {{ .Values.certmanager.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
 spec:
   channel: {{ .Values.certmanager.channel }}
   installPlanApproval: {{ .Values.certmanager.installPlanApproval }}

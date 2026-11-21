@@ -4,6 +4,4 @@ kind: OperatorGroup
 metadata:
   name: workload-availability-operator-group
   namespace: openshift-workload-availability
-  annotations:
-    argocd.argoproj.io/sync-wave: "-3"
 {{ end -}}

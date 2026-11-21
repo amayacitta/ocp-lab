@@ -5,6 +5,7 @@ metadata:
   name: self-node-remediation-config
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   isSoftwareRebootEnabled: true
 {{ end -}}  

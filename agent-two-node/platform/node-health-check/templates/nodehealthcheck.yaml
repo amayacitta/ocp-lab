@@ -3,6 +3,9 @@ apiVersion: remediation.medik8s.io/v1alpha1
 kind: NodeHealthCheck
 metadata:
   name: nodehealthcheck-workers
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   # For critical environments, set the below value to the minimum number of nodes that you require to maintain the cluster workload. 
   # Remediations will stop when this value is hit. Its the workload minus reserve capacity. 
