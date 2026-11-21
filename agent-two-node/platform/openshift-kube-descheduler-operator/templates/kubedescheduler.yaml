@@ -9,7 +9,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   managementState: Managed
-  deschedulingIntervalSeconds: 30
+  deschedulingIntervalSeconds: 60
   mode: Automatic
   profiles:
     - KubeVirtRelieveAndMigrate
