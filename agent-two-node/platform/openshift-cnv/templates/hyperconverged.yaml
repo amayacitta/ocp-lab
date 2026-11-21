@@ -10,18 +10,24 @@ metadata:
     kubevirt.kubevirt.io/jsonpatch: '[{"op":"add","path":"/spec/configuration/developerConfiguration/featureGates/-","value":"Template"}]'      ## enable native VM templates
 spec:
   featureGates:
-    #decentralizedLiveMigration: true  # cross cluster migration in preview
-    incrementalBackup: false  # incrimental backup in preview
-    enableMultiArchBootImageImport: false
-    downwardMetrics: false
-    # disableMDevConfiguration: false # depricated in v5
-    declarativeHotplugVolumes: true   # advanced cdrom features
-    deployKubeSecondaryDNS: false
-    objectGraph: false
-    alignCPUs: false
-    containerPathVolumes: false
-    persistentReservation: false
-    videoConfig: true
+    - name: incrementalBackup
+      state: Disabled
+    - name: enableMultiArchBootImageImport
+      state: Disabled
+    - name: downwardMetrics
+      state: Disabled
+    - name: declarativeHotplugVolumes
+      state: Enabled
+    - name: deployKubeSecondaryDNS
+      state: Disabled
+    - name: objectGraph
+      state: Disabled
+    - name: alignCPUs
+      state: Disabled
+    - name: containerPathVolumes
+      state: Disabled
+    - name: persistentReservation
+      state: Disabled
   virtualization:
     evictionStrategy: LiveMigrate
     higherWorkloadDensity:
