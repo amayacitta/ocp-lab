@@ -2,6 +2,10 @@ chart:
   enabled: true
 
 longhorn:
+  serviceAccount:
+    annotations:
+      argo.argoproj.io/sync-wave: "-10"
+      
   image:
     openshift:
       oauthProxy: 
