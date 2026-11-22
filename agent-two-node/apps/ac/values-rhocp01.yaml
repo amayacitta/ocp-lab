@@ -1,10 +1,24 @@
 chart:
   enabled: true
 
+## array of import source images
+## skopeo list-tags docker://registry.redhat.io/rhel9/rhel-guest-image | sort
+## skopeo list-tags docker://registry.redhat.io/rhel10/rhel-guest-image | sort
+importSources:
+  - name: rhel9
+    url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.9
+    pullMethod: node
+
+  - name: rhel10
+    url: docker://registry.redhat.io/rhel10/rhel-guest-image:10.3
+    pullMethod: node
+
+## vm defaults
 defaults:
   storageClass: longhorn
   accessMode: ReadWriteMany
   volumeMode: Filesystem
+  importSource: rhel10
 
   cpu:
     sockets: 1

@@ -1,15 +1,14 @@
-## podman search --list-tags registry.redhat.io/rhel9/rhel-guest-image --tls-verify=false
 {{- if .Values.chart.enabled }}
-{{- range .Values.vms }}
+{{- range $name, $source := .Values.importSources }}
 ---
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: {{ .name }}-import-source
+  name: {{ $name }}
 spec:
   source:
     registry:
-      url: {{ .image.url | quote }}
-      pullMethod: {{ .image.pullMethod | default "node" }}
+      url: {{ $source.url | quote }}
+      pullMethod: {{ $source.pullMethod | default "node" }}
 {{- end }}
 {{- end }}
