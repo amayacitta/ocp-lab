@@ -4,8 +4,7 @@ chart:
 clusters:
   selector:
     matchLabels:
-      type: openshift
-      env: dev
+      bootstrap.amayacitta.co.uk/enabled: true
 
 # AppSet settings.
 appset:
