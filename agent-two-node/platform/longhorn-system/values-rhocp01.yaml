@@ -4,16 +4,13 @@ chart:
 longhorn:
   preUpgradeChecker:
     jobEnabled: false
-    
-  serviceAccount:
-    annotations:
-      argo.argoproj.io/sync-wave: "-10"
 
   image:
     openshift:
       oauthProxy: 
-        repository: quay.io/openshift/origin-oauth-proxy
-        tag: 5.0    # skopeo list-tags docker://quay.io/openshift/origin-oauth-proxy | sort
+        registry: quay.io
+        repository: openshift/origin-oauth-proxy
+        tag: "5.0"    # skopeo list-tags docker://quay.io/openshift/origin-oauth-proxy | sort
 
   persistence:
     defaultClassReplicaCount: 2
