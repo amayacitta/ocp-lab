@@ -4,14 +4,14 @@ kind: PersistentVolumeClaim
 metadata:
   name: rhel-demo-vm-01-disk
 spec:
-  storageClassName: lvms-nvme-local-lvm-thin
+  storageClassName: longhorn
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
     name: rhel-demo-vm-01-import-source
   accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem # Block | Filesystem
+    - ReadWriteMany
+  volumeMode: Block # Block | Filesystem
   resources:
     requests:
       storage: 30Gi
