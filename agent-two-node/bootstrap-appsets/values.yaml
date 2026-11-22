@@ -4,7 +4,7 @@ chart:
 clusters:
   selector:
     matchLabels:
-      bootstrap.amayacitta.co.uk/enabled: true
+      bootstrap.amayacitta.co.uk/enabled: "true"
 
 # AppSet settings.
 appset:
@@ -12,6 +12,8 @@ appset:
     enabled: true
     namespace: openshift-gitops
     project: default
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
     git:
       repoURL: https://github.com/amayacitta/ocp-lab.git
       path: agent-two-node/platform/*
@@ -34,6 +36,8 @@ appset:
     enabled: true
     namespace: openshift-gitops
     project: default
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
     git:
       repoURL: https://github.com/amayacitta/ocp-lab.git
       path: agent-two-node/apps/*

@@ -22,7 +22,7 @@ spec:
     metadata:
       name: {{ printf "{{.nameNormalized}}-{{ base .path.path }}" | quote }}
       annotations:
-        argocd.argoproj.io/compare-options: ServerSideDiff=true
+{{- toYaml (required "appset.platform.annotations is required" .Values.appset.platform.annotations) | nindent 8 }}
     spec:
       project: {{ .Values.appset.platform.project | quote }}
       source:
