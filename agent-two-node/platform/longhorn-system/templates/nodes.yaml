@@ -1,0 +1,61 @@
+{{- if .Values.chart.enabled }}
+apiVersion: v1
+kind: Node
+metadata:
+  name: master0
+  labels:
+    node.longhorn.io/create-default-disk: config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/sync-options: Delete=false
+    node.longhorn.io/default-disks-config: >-
+      [
+        {
+          "name": "nvme-1tb",
+          "path": "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_1TB_S7U4NJ0XB17122Z",
+          "diskType": "block",
+          "allowScheduling": true,
+          "storageReserved": 0,
+          "tags": ["nvme"]
+        },
+        {
+          "name": "nvme-2tb",
+          "path": "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_2TB_S7GDNS0X223156Z",
+          "diskType": "block",
+          "allowScheduling": true,
+          "storageReserved": 0,
+          "tags": ["nvme"]
+        }
+      ]
+---
+apiVersion: v1
+kind: Node
+metadata:
+  name: master1
+  labels:
+    node.longhorn.io/create-default-disk: config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/sync-options: Delete=false
+    node.longhorn.io/default-disks-config: >-
+      [
+        {
+          "name": "nvme-1tb",
+          "path": "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_1TB_S7U4NU1Y926191Z",
+          "diskType": "block",
+          "allowScheduling": true,
+          "storageReserved": 0,
+          "tags": ["nvme"]
+        },
+        {
+          "name": "nvme-2tb",
+          "path": "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_2TB_S7GDNS0X223152V",
+          "diskType": "block",
+          "allowScheduling": true,
+          "storageReserved": 0,
+          "tags": ["nvme"]
+        }
+      ]
+{{ end -}}
