@@ -1,2 +1,122 @@
 chart:
   enabled: true
+
+defaults:
+  storageClass: longhorn
+  accessMode: ReadWriteMany
+  volumeMode: Filesystem
+
+  cpu:
+    sockets: 1
+    cores: 4
+    threads: 1
+
+  memory:
+    guest: 4Gi
+    request: 3Gi
+
+  diskBus: virtio
+
+  evictionStrategy: LiveMigrate
+
+vms:
+  - name: rhel-demo-vm-01
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-02
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-03
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-04
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-05
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-06
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-07
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-08
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-09
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-10
+    image:
+      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
+      pullMethod: node
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234

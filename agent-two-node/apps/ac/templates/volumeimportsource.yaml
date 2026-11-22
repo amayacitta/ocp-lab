@@ -1,13 +1,15 @@
 ## podman search --list-tags registry.redhat.io/rhel9/rhel-guest-image --tls-verify=false
-{{ if .Values.chart.enabled -}}
+{{- if .Values.chart.enabled }}
+{{- range .Values.vms }}
+---
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: rhel-10-import-source
+  name: {{ .name }}-import-source
 spec:
   source:
     registry:
-      # skopeo list-tags docker://registry.redhat.io/rhel10/rhel-guest-image | sort
-      url: "docker://registry.redhat.io/rhel10/rhel-guest-image:10.3"
-      pullMethod: node
-{{ end -}}
+      url: {{ .image.url | quote }}
+      pullMethod: {{ .image.pullMethod | default "node" }}
+{{- end }}
+{{- end }}

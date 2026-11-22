@@ -1,571 +1,83 @@
-{{ if .Values.chart.enabled -}}
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-01
-  labels:
-    app: rhel-demo-vm-01 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-01-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
+{{- if .Values.chart.enabled }}
+{{- range .Values.vms }}
 ---
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: rhel-demo-vm-02
+  name: {{ .name }}
   labels:
-    app: rhel-demo-vm-02 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
+    app: {{ .name }}
+
+spec:
+  running: true
+
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+
+    spec:
+      evictionStrategy: {{ .evictionStrategy | default $.Values.defaults.evictionStrategy }}
+
+      domain:
+        cpu:
+          cores: {{ dig "cpu" "cores" $.Values.defaults.cpu.cores . }}
+          sockets: {{ dig "cpu" "sockets" $.Values.defaults.cpu.sockets . }}
+          threads: {{ dig "cpu" "threads" $.Values.defaults.cpu.threads . }}
+
+        memory:
+          guest: {{ dig "memory" "guest" $.Values.defaults.memory.guest . }}
+
+        resources:
+          requests:
+            memory: {{ dig "memory" "request" $.Values.defaults.memory.request . }}
+
+        devices:
+          disks:
+            - name: vm-rootdisk
+              disk:
+                bus: {{ $.Values.defaults.diskBus }}
+
+            {{- if .cloudInit.enabled }}
+            - name: cloudinitdisk
+              disk:
                 bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
+            {{- end }}
+
+          interfaces:
             - masquerade: {}
               name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
+
+          rng: {}
+
+        features:
+          smm:
+            enabled: true
+
+        firmware:
+          bootloader:
+            efi: {}
+
+      networks:
         - name: default
           pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-02-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
+
+      volumes:
+
+        - name: vm-rootdisk
+          persistentVolumeClaim:
+            claimName: {{ .name }}-disk
+
+        {{- if .cloudInit.enabled }}
+        - name: cloudinitdisk
+          cloudInitNoCloud:
             userData: |-
               #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-03
-  labels:
-    app: rhel-demo-vm-03 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-03-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-04
-  labels:
-    app: rhel-demo-vm-04 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-04-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-05
-  labels:
-    app: rhel-demo-vm-05 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-05-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-06
-  labels:
-    app: rhel-demo-vm-06 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-06-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-07
-  labels:
-    app: rhel-demo-vm-07 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-07-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-08
-  labels:
-    app: rhel-demo-vm-08 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-08-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-09
-  labels:
-    app: rhel-demo-vm-09 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-09-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
----
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: rhel-demo-vm-10
-  labels:
-    app: rhel-demo-vm-10 
-spec:    
-    running: true
-    template:
-      # metadata:
-      #   annotations:
-      #     descheduler.alpha.kubernetes.io/evict: "true"
-      spec:
-        domain:
-          cpu:
-            cores: 4
-            sockets: 1
-            threads: 1
-          memory:
-            guest: 4Gi    # memory assiged to the guest 
-          devices:
-            disks:
-            - disk:
-                bus: virtio
-              name: vm-rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
-            interfaces:
-            - masquerade: {}
-              name: default
-            rng: {}
-          features:
-            smm:
-              enabled: true
-          firmware:
-            bootloader:
-              efi: {}
-          resources:
-            requests:
-              memory: 3Gi     # memory used for scheduling
-        evictionStrategy: LiveMigrate
-        networks:
-        - name: default
-          pod: {}
-        volumes:
-        - persistentVolumeClaim:
-              claimName: rhel-demo-vm-10-disk
-          name: vm-rootdisk
-        - cloudInitNoCloud:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: 'redhat1234' 
-              chpasswd: { expire: False }
-          name: cloudinitdisk
-{{ end -}}
+              user: {{ .cloudInit.user }}
+              password: {{ .cloudInit.password | quote }}
+              chpasswd:
+                expire: false
+        {{- end }}
+
+{{- end }}
+{{- end }}
