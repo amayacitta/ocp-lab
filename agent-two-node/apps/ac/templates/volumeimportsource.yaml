@@ -3,10 +3,11 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: rhel-demo-vm-01-import-source
+  name: rhel-10-import-source
 spec:
   source:
     registry:
-      url: "docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870"
+      # skopeo list-tags docker://registry.redhat.io/rhel10/rhel-guest-image | sort
+      url: "docker://registry.redhat.io/rhel10/rhel-guest-image:10.3"
       pullMethod: node
 {{ end -}}

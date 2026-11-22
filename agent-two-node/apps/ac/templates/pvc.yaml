@@ -8,7 +8,24 @@ spec:
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
-    name: rhel-demo-vm-01-import-source
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-02-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
   accessModes:
     - ReadWriteMany
   volumeMode: Filesystem # Block | Filesystem
