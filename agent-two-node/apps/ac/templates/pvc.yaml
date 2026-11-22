@@ -10,15 +10,12 @@ spec:
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
-    name: {{ .name }}-import-source
-
+    name: {{ .importSource | default $.Values.defaults.importSource }}
   accessModes:
-    - {{ .disk.accessMode | default $.Values.defaults.accessMode }}
-
-  volumeMode: {{ .disk.volumeMode | default $.Values.defaults.volumeMode }}
-
+    - {{ .disk.accessMode | default $.Values.defaults.accessMode | default "ReadWriteMany" }}
+  volumeMode: {{ .disk.volumeMode | default $.Values.defaults.volumeMode | default "Filesystem" }}
   resources:
     requests:
-      storage: {{ .disk.size }}
+      storage: {{ .disk.size | default $.Values.defaults.disk.size }}
 {{- end }}
 {{- end }}

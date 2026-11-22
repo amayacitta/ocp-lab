@@ -7,67 +7,51 @@ metadata:
   name: {{ .name }}
   labels:
     app: {{ .name }}
-
 spec:
   running: true
-
   template:
     metadata:
       labels:
         app: {{ .name }}
-
     spec:
       evictionStrategy: {{ .evictionStrategy | default $.Values.defaults.evictionStrategy }}
-
       domain:
         cpu:
           cores: {{ dig "cpu" "cores" $.Values.defaults.cpu.cores . }}
           sockets: {{ dig "cpu" "sockets" $.Values.defaults.cpu.sockets . }}
           threads: {{ dig "cpu" "threads" $.Values.defaults.cpu.threads . }}
-
         memory:
           guest: {{ dig "memory" "guest" $.Values.defaults.memory.guest . }}
-
         resources:
           requests:
             memory: {{ dig "memory" "request" $.Values.defaults.memory.request . }}
-
         devices:
           disks:
             - name: vm-rootdisk
               disk:
                 bus: {{ $.Values.defaults.diskBus }}
-
             {{- if .cloudInit.enabled }}
             - name: cloudinitdisk
               disk:
                 bus: virtio
             {{- end }}
-
           interfaces:
             - masquerade: {}
               name: default
-
           rng: {}
-
         features:
           smm:
             enabled: true
-
         firmware:
           bootloader:
             efi: {}
-
       networks:
         - name: default
           pod: {}
-
       volumes:
-
         - name: vm-rootdisk
           persistentVolumeClaim:
             claimName: {{ .name }}-disk
-
         {{- if .cloudInit.enabled }}
         - name: cloudinitdisk
           cloudInitNoCloud:
@@ -78,6 +62,5 @@ spec:
               chpasswd:
                 expire: false
         {{- end }}
-
 {{- end }}
 {{- end }}

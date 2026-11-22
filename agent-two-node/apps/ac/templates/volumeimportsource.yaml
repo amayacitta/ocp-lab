@@ -4,7 +4,7 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: {{ $source.name }}-import-source
+  name: {{ $source.name }}
 spec:
   source:
     registry:

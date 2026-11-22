@@ -8,36 +8,31 @@ importSources:
   - name: rhel9
     url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.9
     pullMethod: node
-
   - name: rhel10
     url: docker://registry.redhat.io/rhel10/rhel-guest-image:10.3
     pullMethod: node
 
-## vm defaults
+## vm defaults can be overridden by placing values in the array of vms
 defaults:
   storageClass: longhorn
   accessMode: ReadWriteMany
   volumeMode: Filesystem
   importSource: rhel10
-
   cpu:
     sockets: 1
     cores: 4
     threads: 1
-
   memory:
     guest: 4Gi
     request: 3Gi
-
   diskBus: virtio
-
   evictionStrategy: LiveMigrate
 
+## array of vms
+## enter specific values when you want to override the defaults
 vms:
   - name: rhel-demo-vm-01
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel09
     disk:
       size: 30Gi
     cloudInit:
@@ -45,9 +40,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-02
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -55,9 +48,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-03
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -65,9 +56,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-04
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -75,9 +64,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-05
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -85,9 +72,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-06
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -95,9 +80,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-07
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -105,9 +88,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-08
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -115,9 +96,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-09
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
@@ -125,9 +104,7 @@ vms:
       user: cloud-user
       password: redhat1234
   - name: rhel-demo-vm-10
-    image:
-      url: docker://registry.redhat.io/rhel9/rhel-guest-image:9.3-870
-      pullMethod: node
+    importSource: rhel10
     disk:
       size: 30Gi
     cloudInit:
