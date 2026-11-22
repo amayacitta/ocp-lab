@@ -4,7 +4,7 @@ kind: RoleBinding
 metadata:
   name: system:openshift:scc:anyuid
   annotations:
-    argo.argoproj.io/sync-wave: "-5"
+    argo.argoproj.io/sync-wave: "-10"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -28,13 +28,22 @@ kind: RoleBinding
 metadata:
   name: system:openshift:scc:nonroot-v2
   annotations:
-    argo.argoproj.io/sync-wave: "-5"
+    argo.argoproj.io/sync-wave: "-10"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: system:openshift:scc:nonroot-v2
 subjects:
 - kind: ServiceAccount
-  name: sealed-secrets-controller
+  name: longhorn-ui-service-account
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: longhorn-support-bundle
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: longhorn-service-account
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: longhorn-csi-service-account
   namespace: {{ .Release.Namespace }}
 {{ end -}}
