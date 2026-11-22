@@ -1,0 +1,14 @@
+{{- if .Values.chart.enabled }}
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: 99-master-longhorn-hugepages
+  labels:
+    machineconfiguration.openshift.io/role: master
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+spec:
+  kernelArguments:
+    - hugepagesz=2M
+    - hugepages=1024
+{{- end }}
