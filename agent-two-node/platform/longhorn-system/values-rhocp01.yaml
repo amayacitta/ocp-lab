@@ -2,7 +2,7 @@ chart:
   enabled: true
 
 nodeConfig:
-  enabled: true
+  enabled: false
 
   nodes:
     master0:
