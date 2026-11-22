@@ -29,8 +29,8 @@ spec:
           disks:
             - name: vm-rootdisk
               disk:
-                bus: {{ $.Values.defaults.diskBus }}
-            {{- if .cloudInit.enabled }}
+                bus: {{ .diskBus | default $.Values.defaults.diskBus }}
+            {{- if dig "cloudInit" "enabled" false . }}
             - name: cloudinitdisk
               disk:
                 bus: virtio
@@ -52,7 +52,7 @@ spec:
         - name: vm-rootdisk
           persistentVolumeClaim:
             claimName: {{ .name }}-disk
-        {{- if .cloudInit.enabled }}
+        {{- if dig "cloudInit" "enabled" false . }}
         - name: cloudinitdisk
           cloudInitNoCloud:
             userData: |-
