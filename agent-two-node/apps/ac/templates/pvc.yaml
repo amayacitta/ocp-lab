@@ -32,4 +32,140 @@ spec:
   resources:
     requests:
       storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-03-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-04-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-05-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-06-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-07-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-08-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-09-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rhel-demo-vm-10-disk
+spec:
+  storageClassName: longhorn
+  dataSourceRef:
+    apiGroup: cdi.kubevirt.io
+    kind: VolumeImportSource
+    name: rhel-10-import-source
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem # Block | Filesystem
+  resources:
+    requests:
+      storage: 30Gi
 {{ end -}}
