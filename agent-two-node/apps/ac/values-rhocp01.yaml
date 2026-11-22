@@ -25,6 +25,8 @@ defaults:
   memory:
     guest: 4Gi
     request: 3Gi
+  disk:
+    size: 30Gi
   diskBus: virtio
   evictionStrategy: LiveMigrate
 
