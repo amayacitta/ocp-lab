@@ -1,0 +1,27 @@
+chart:
+  enabled: true
+
+longhorn:
+  image:
+    openshift:
+      oauthProxy: 
+        registry: quay.io/openshift/origin-oauth-proxy
+        tag: 5.1    # skopeo list-tags docker://quay.io/openshift/origin-oauth-proxy | sort
+
+  persistence:
+    defaultClassReplicaCount: 2
+
+    defaultDiskSelector:
+      enable: true
+      selector: "nvme"
+    dataEngine: v2
+
+  defaultSettings:
+    createDefaultDiskLabeledNodes: "true"
+    dataEngineHugepageEnabled: "true"
+  openshift:
+    enabled: true
+    ui:
+      route: "longhorn"
+      port: 443
+      proxy: 8443

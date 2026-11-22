@@ -22,7 +22,7 @@ appset:
       syncOptions:
         - CreateNamespace=true
       automated:
-        enabled: true
+        enabled: false
         prune: true
         selfHeal: true
       retry:
