@@ -18,11 +18,14 @@ longhorn:
     defaultDiskSelector:
       enable: true
       selector: "nvme"
+
     dataEngine: v2
 
   defaultSettings:
-    createDefaultDiskLabeledNodes: "true"
-    dataEngineHugepageEnabled: "true"
+    v1DataEngine: false
+    v2DataEngine: true
+    createDefaultDiskLabeledNodes: true
+    dataEngineHugepageEnabled: true
 
   openshift:
     enabled: true
