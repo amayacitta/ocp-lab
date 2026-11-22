@@ -2,10 +2,13 @@ chart:
   enabled: true
 
 longhorn:
+  preUpgradeChecker:
+    jobEnabled: false
+    
   serviceAccount:
     annotations:
       argo.argoproj.io/sync-wave: "-10"
-      
+
   image:
     openshift:
       oauthProxy: 
