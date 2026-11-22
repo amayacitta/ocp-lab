@@ -16,7 +16,7 @@ importSources:
 defaults:
   storageClass: longhorn
   accessMode: ReadWriteMany
-  volumeMode: Filesystem
+  volumeMode: Block
   importSource: rhel10
   cpu:
     sockets: 1

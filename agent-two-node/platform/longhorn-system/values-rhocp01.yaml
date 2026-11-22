@@ -54,6 +54,7 @@ longhorn:
 
   persistence:
     defaultClassReplicaCount: 2
+    migratable: true
 
     defaultDiskSelector:
       enable: true
