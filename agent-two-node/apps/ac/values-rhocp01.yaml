@@ -34,7 +34,7 @@ defaults:
 ## enter specific values when you want to override the defaults
 vms:
   - name: rhel-demo-vm-01
-    importSource: rhel09
+    importSource: rhel9
     disk:
       size: 30Gi
     cloudInit:
