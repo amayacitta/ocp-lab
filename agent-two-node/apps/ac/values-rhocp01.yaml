@@ -41,75 +41,75 @@ vms:
       enabled: true
       user: cloud-user
       password: redhat1234
-  # - name: rhel-demo-vm-02
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-03
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-04
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-05
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-06
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-07
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-08
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-09
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
-  # - name: rhel-demo-vm-10
-  #   importSource: rhel10
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
+  - name: rhel-demo-vm-02
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-03
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-04
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-05
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-06
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-07
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-08
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-09
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
+  - name: rhel-demo-vm-10
+    importSource: rhel10
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
