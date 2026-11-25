@@ -1,0 +1,64 @@
+{{- if and .Values.chart.enabled .Values.nodeConfig.enabled }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: odf-node-config
+  namespace: {{ .Release.Namespace }}
+  annotations: 
+    argocd.argoproj.io/sync-wave: "-10"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: odf-node-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - nodes
+    verbs:
+      - get
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: odf-node-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: odf-node-config
+subjects:
+  - kind: ServiceAccount
+    name: odf-node-config
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: odf-node-config
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccountName: odf-node-config
+      containers:
+        - name: configure
+          image: registry.redhat.io/openshift4/ose-cli:latest
+          command:
+            - /bin/bash
+            - -ec
+            - |
+              {{- range $node := .Values.nodeConfig.nodes }}
+              echo "Configuring node {{ $node }}"
+
+              oc label node {{ $node }} \
+                cluster.ocs.openshift.io/openshift-storage='' \
+                --overwrite
+              {{- end }}
+{{- end }}

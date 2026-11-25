@@ -1,0 +1,10 @@
+chart:
+  enabled: true
+
+## job for labeling nodes, add nodes to the nodeConfig.nodes list below
+nodeConfig:
+  enabled: true
+  nodes:
+    - master0
+    - master1
+    - arbiter

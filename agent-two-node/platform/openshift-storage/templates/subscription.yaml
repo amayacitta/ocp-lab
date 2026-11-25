@@ -1,0 +1,24 @@
+{{- if and .Values.chart.enabled }}
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: odf-operator
+spec:
+  channel: stable-5.0
+  installPlanApproval: Automatic
+  name: odf-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ocs-client-operator-stable-5.0-redhat-operators-openshift-marketplace
+spec:
+  channel: stable-5.0
+  config: {}
+  installPlanApproval: Automatic
+  name: ocs-client-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+{{- end }}

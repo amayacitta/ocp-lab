@@ -15,4 +15,5 @@ spec:
     - netobserv-plugin	
     - netobserv-plugin-static
     - monitoring-console-plugin
+    - odf-console
 {{ end -}}
