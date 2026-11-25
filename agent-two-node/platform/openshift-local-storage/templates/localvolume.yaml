@@ -4,6 +4,9 @@ kind: LocalVolume
 metadata:
   name: local-nvme-master0
   namespace: openshift-local-storage
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   logLevel: Normal
   managementState: Managed
@@ -26,6 +29,9 @@ kind: LocalVolume
 metadata:
   name: local-nvme-master1
   namespace: openshift-local-storage
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   logLevel: Normal
   managementState: Managed
