@@ -1,0 +1,39 @@
+{{- if .Values.chart.enabled }}
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  name: two-node-arbiter-storagecluster
+spec:
+  monDataDirHostPath: /var/lib/rook
+  flexibleScaling: true
+  placement:
+    mon:
+     tolerations:
+     - key: "node-role.kubernetes.io/arbiter"
+       operator: Exists
+       effect: "NoSchedule"
+     - key: "node-role.kubernetes.io/master"
+       operator: Exists
+       effect: "NoSchedule"
+  managedResources:
+    cephBlockPools:
+      poolSpec:
+        replicated:
+          size: 2
+    cephFilesystems:
+      metadataPoolSpec: {replicated: {size: 2}}
+      dataPoolSpec: {replicated: {size: 2}}
+    cephCluster:
+      cephConfig:
+        global:
+          osd_pool_default_size: "2"
+  storageDeviceSets:
+    - name: test
+      count: 1
+      replica: 2
+      dataPVCTemplate:
+        spec:
+          accessModes: [ReadWriteOnce]
+          storageClassName: localblock
+          volumeMode: Block
+{{ end -}}
