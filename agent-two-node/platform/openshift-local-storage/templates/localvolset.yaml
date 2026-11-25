@@ -2,7 +2,7 @@
 apiVersion: local.storage.openshift.io/v1alpha1
 kind: LocalVolumeSet
 metadata:
-  name: local-nvme-1tb
+  name: samsung-nvme-1tb
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "10"
@@ -12,7 +12,7 @@ spec:
       - matchExpressions:
           - key: node-role.kubernetes.io/worker
             operator: Exists
-  storageClassName: local-nvme-1tb
+  storageClassName: samsung-nvme-1tb
   volumeMode: Filesystem
   fsType: ext4
   maxDeviceCount: 1
