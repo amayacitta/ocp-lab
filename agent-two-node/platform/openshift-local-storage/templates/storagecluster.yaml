@@ -2,7 +2,7 @@
 apiVersion: ocs.openshift.io/v1
 kind: StorageCluster
 metadata:
-  name: two-node-arbiter-storagecluster
+  name: two-node-arbiter
 spec:
   monDataDirHostPath: /var/lib/rook
   flexibleScaling: true
