@@ -1,0 +1,7 @@
+{{- if .Values.chart.enabled }}
+kind: LocalVolumeDiscovery
+apiVersion: local.storage.openshift.io/v1alpha1
+metadata:
+  name: auto-discover-devices
+spec: {}
+{{ end -}}
