@@ -2,17 +2,17 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: master1-local-nvme
+  name: master1-local-nvme-1tb
 spec:
   capacity:
-    storage: 500Gi
+    storage: 900Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: localblock
   volumeMode: Block
   local:
-    path: /dev/nvme1n1
+    path: /dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_1TB_S7U4NU1Y926191Z
   nodeAffinity:
     required:
       nodeSelectorTerms:
