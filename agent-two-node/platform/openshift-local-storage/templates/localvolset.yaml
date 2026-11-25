@@ -23,6 +23,5 @@ spec:
       - disk
     minSize: 900Gi
     maxSize: 1100Gi
-    vendors:
-      - Samsung
+    models: "Samsung SSD 990 EVO Plus 1TB"
 {{ end -}}
