@@ -7,7 +7,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "10"
-    kubevirt.kubevirt.io/jsonpatch: '[{"op":"add","path":"/spec/configuration/developerConfiguration/featureGates/-","value":"Template"}]'      ## enable native VM templates
+    #kubevirt.kubevirt.io/jsonpatch: '[{"op":"add","path":"/spec/configuration/developerConfiguration/featureGates/-","value":"Template"}]'      ## enable native VM templates
 spec:
   featureGates:
     - name: incrementalBackup
