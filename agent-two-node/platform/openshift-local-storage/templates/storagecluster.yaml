@@ -3,6 +3,9 @@ apiVersion: ocs.openshift.io/v1
 kind: StorageCluster
 metadata:
   name: two-node-arbiter
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   monDataDirHostPath: /var/lib/rook
   flexibleScaling: true
