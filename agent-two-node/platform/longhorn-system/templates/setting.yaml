@@ -1,0 +1,13 @@
+
+{{- if .Values.chart.enabled }}
+apiVersion: longhorn.io/v1beta2
+kind: Setting
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "20"
+  name: data-engine-interrupt-mode-enabled
+status:
+  applied: true
+value: '{"v2":"true"}'
+{{ end -}}
