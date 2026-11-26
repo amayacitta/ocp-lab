@@ -14,7 +14,7 @@ importSources:
 
 ## vm defaults can be overridden by placing values in the array of vms
 defaults:
-  storageClass: longhorn
+  storageClass: two-node-arbiter-ceph-rbd-virtualization
   accessMode: ReadWriteMany
   volumeMode: Block
   importSource: rhel10
@@ -32,15 +32,15 @@ defaults:
 
 ## array of vms
 ## enter specific values when you want to override the defaults
-vms: {}
-  # - name: rhel-demo-vm-01
-  #   importSource: rhel9
-  #   disk:
-  #     size: 30Gi
-  #   cloudInit:
-  #     enabled: true
-  #     user: cloud-user
-  #     password: redhat1234
+vms:
+  - name: rhel-demo-vm-01
+    importSource: rhel9
+    disk:
+      size: 30Gi
+    cloudInit:
+      enabled: true
+      user: cloud-user
+      password: redhat1234
   # - name: rhel-demo-vm-02
   #   importSource: rhel10
   #   disk:
