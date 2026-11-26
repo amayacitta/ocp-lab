@@ -31,7 +31,7 @@ spec:
         global:
           osd_pool_default_size: "2"
   storageDeviceSets:
-    - name: test
+    - name: samsung-nvme-1tb
       count: 1
       replica: 2
       dataPVCTemplate:
