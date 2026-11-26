@@ -19,13 +19,31 @@ spec:
        operator: Exists
        effect: "NoSchedule"
   managedResources:
+    cephObjectStores:
+      enableSTS: true
+      dataPoolSpec:
+        failureDomain: host
+        deviceClass: ssd
+        replicated:
+          size: 2
+          replicasPerFailureDomain: 1
+      metadataPoolSpec:
+        failureDomain: host
+        deviceClass: ssd
+        replicated:
+          size: 2
+          replicasPerFailureDomain: 1
     cephBlockPools:
       poolSpec:
         replicated:
           size: 2
     cephFilesystems:
-      metadataPoolSpec: {replicated: {size: 2}}
-      dataPoolSpec: {replicated: {size: 2}}
+      metadataPoolSpec:
+        replicated:
+          size: 2
+      dataPoolSpec:
+        replicated:
+          size: 2
     cephCluster:
       cephConfig:
         global:
