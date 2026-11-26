@@ -13,8 +13,8 @@ spec:
           - key: node-role.kubernetes.io/worker
             operator: Exists
   storageClassName: samsung-nvme-1tb
-  volumeMode: Filesystem
-  fsType: ext4
+  volumeMode: Blok
+  # fsType: ext4
   maxDeviceCount: 1
   deviceInclusionSpec:
     deviceMechanicalProperties:

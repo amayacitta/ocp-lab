@@ -31,7 +31,7 @@ spec:
         global:
           osd_pool_default_size: "2"
   storageDeviceSets:
-    - name: samsung-nvme-1tb
+    - name: samsung-nvme-1tbrook-ceph-osd-prepare-samsung-nvme-1tb-0-data-0vpktg-r5jmb
       count: 1
       replica: 2
       dataPVCTemplate:
