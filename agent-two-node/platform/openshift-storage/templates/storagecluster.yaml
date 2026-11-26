@@ -37,6 +37,9 @@ spec:
       dataPVCTemplate:
         spec:
           accessModes: [ReadWriteOnce]
+          resources:
+            requests:
+              storage: 900Gi
           storageClassName: localblock
           volumeMode: Block
 {{ end -}}
